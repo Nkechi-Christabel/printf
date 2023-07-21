@@ -9,8 +9,7 @@
  * @count: The number of characters printed
  * @args: The arguments to be printed
  */
-
-void print_arg(const char *format, int count, va_list args)
+void  print_arg(const char *format, int *count, va_list args)
 {
 	char *str;
 
@@ -18,7 +17,7 @@ void print_arg(const char *format, int count, va_list args)
 	{
 		case 'c':
 			_putchar(va_arg(args, int));
-			count++;
+			(*count)++;
 			break;
 
 		case 's':
@@ -27,18 +26,18 @@ void print_arg(const char *format, int count, va_list args)
 			{
 				_putchar(*str);
 				str++;
-				count++;
+				(*count)++;
 			}
 			break;
 
 		case '%':
 			_putchar('%');
-			count++;
+			(*count)++;
 			break;
 
 		default:
 			_putchar('%');
-			count++;
+			(*count)++;
 			break;
 	}
 }
@@ -67,7 +66,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
-			print_arg(format, count, args);
+			print_arg(format, &count, args);
 		}
 
 		format++;
