@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdarg.h>
+
+/**
+ * _print - The program produces output according to a format
+ * @format: A character string, the format to follow.
+ *
+ * Return: The number of charcaters printed or 0 always (Success)
+ */
+int _printf(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    int char_count = 0;
+    while (*format != '\0')
+    {
+        if (*format == '%')
+        {
+            format++; // Move to the next character after '%'
+
+            // Check the conversion specifier
+            switch (*format)
+            {
+            case 'c':
+                putchar(va_arg(args, int));
+                char_count++;
+                break;
+
+            case 's':
+            {
+                char *str = va_arg(args, char *);
+                while (*str != '\0')
+                {
+                    putchar(*str);
+                    str++;
+                    char_count++;
+                }
+                break;
+            }
+
+            case '%':
+                putchar('%');
+                char_count++;
+                break;
+
+            default:
+                // If an unsupported specifier is found, just print the '%'
+                putchar('%');
+                putchar(*format);
+                char_count += 2;
+                break;
+            }
+        }
+        else
+        {
+            putchar(*format);
+            char_count++;
+        }
+
+        format++;
+    }
+
+    va_end(args);
+
+    return char_count;
+}
