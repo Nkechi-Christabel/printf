@@ -21,6 +21,8 @@ void print_arg(const char *format, int *count, va_list args)
 
 		case 's':
 			str = va_arg(args, char *);
+			if (!str)
+				str = "(nil)";
 			while (*str)
 			{
 				_putchar(*str);
