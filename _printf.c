@@ -43,12 +43,10 @@ void print_arg(const char *format, int *count, va_list args)
 			print_number(num, count);
 			break;
 
-
 		default:
 			_putchar('%');
 			_putchar(*format);
 			(*count) += 2;
-			break;
 	}
 }
 
@@ -106,6 +104,9 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
+			if (*format == '\0')
+				break;
+
 			print_arg(format, &count, args);
 		}
 
