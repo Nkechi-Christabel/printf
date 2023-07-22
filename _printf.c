@@ -18,6 +18,7 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
 	{
 		_putchar(*str, count, buffer, buffer_index);
 		str++;
+
 		(*count)++;
 	}
 
@@ -50,7 +51,8 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			_putchar('%', count, buffer, buffer_index);
 			(*count)++;
 			break;
-		case ('d' || 'i'):
+		case 'd':
+		case 'i':
 			print_number(va_arg(args, int), count, buffer, buffer_index);
 			break;
 		case 'b':
@@ -69,7 +71,7 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			print_hex(va_arg(args, unsigned int), 1, count, buffer, buffer_index);
 			break;
 		default:
-			_putchar('%', count, buffer, buffer_index);
+			_putchar('%',count, buffer, buffer_index);
 			_putchar(*format, count, buffer, buffer_index);
 			(*count) += 2;
 			break;

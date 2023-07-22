@@ -14,7 +14,7 @@ int print_number(int num, int *count, char *buffer, int *buffer_index)
 
 	if (num < 0)
 	{
-		_putchar('-', count, buffer, buffer_index);
+		_putchar('-', count,  buffer, buffer_index);
 		(*count)++;
 		n = -num;
 	}
@@ -26,6 +26,7 @@ int print_number(int num, int *count, char *buffer, int *buffer_index)
 
 	_putchar(n % 10 + '0', count, buffer, buffer_index);
 	(*count)++;
+
 	return (0);
 }
 

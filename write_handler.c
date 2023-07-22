@@ -16,7 +16,7 @@ void _putchar(char c, int *count, char *buffer, int *buffer_index)
         _write_buffer(buffer, count, buffer_index);
 
     buffer[(*buffer_index)++] = c;
-    (*count)++;
+
 }
 
 /**
