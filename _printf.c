@@ -12,6 +12,7 @@ void print_arg(const char *format, int *count, va_list args)
 {
 	char *str;
 	int num;
+	unsigned int b;
 
 	switch (*format)
 	{
@@ -43,6 +44,11 @@ void print_arg(const char *format, int *count, va_list args)
 			print_number(num, count);
 			break;
 
+		case 'b':
+			b  = va_arg(args, unsigned int);
+			print_binary(b, count);
+			break;
+
 		default:
 			_putchar('%');
 			_putchar(*format);
@@ -50,34 +56,6 @@ void print_arg(const char *format, int *count, va_list args)
 			break;
 	}
 }
-
-/**
- * print_number - Prints an integer
- * @num: The number to print
- * @count: The number of characters printed
- * Return: The number of characters printed
- */
-int print_number(int num, int *count)
-{
-	unsigned int n;
-
-	if (num < 0)
-	{
-		_putchar('-');
-		(*count)++;
-		n = -num;
-	}
-	else
-		n = num;
-
-	if (n / 10 != 0)
-		print_number(n / 10, count);
-
-	_putchar(n % 10 + '0');
-	(*count)++;
-	return (0);
-}
-
 
 /**
  * _printf - The program produces output according to a format
