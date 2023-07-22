@@ -47,6 +47,7 @@ void print_arg(const char *format, int *count, va_list args)
 			_putchar('%');
 			_putchar(*format);
 			(*count) += 2;
+			break;
 	}
 }
 
