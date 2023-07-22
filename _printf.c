@@ -35,9 +35,11 @@ void  print_arg(const char *format, int *count, va_list args)
 			_putchar('%');
 			(*count)++;
 			break;
-		case 'd' || 'i':
+		case 'd':
+		case 'i':
 			num = va_arg(args, int);
 			print_number(num, count);
+			break;
 
 
 		default:
@@ -59,19 +61,18 @@ int print_number(int num, int *count)
 	if (num < 0)
 	{
 		_putchar('-');
-		(count)++;
+		(*count)++;
 		n = -num;
 	}
 	else
 		n = num;
 
 	if (n / 10 != 0)
-		(count) += print_number(n / 10);
+		print_number(n / 10, count);
 
 	_putchar(n % 10 + '0');
-	(count)++;
-
-
+	(*count)++;
+	return (0);
 }
 
 
