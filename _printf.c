@@ -3,6 +3,25 @@
 #include <stddef.h>
 
 /**
+ * check_str - Prints a string
+ * @str: The string to print
+ * @count: The number of characters printed
+ */
+void check_str(char *str, int *count)
+{
+	if (!(*str))
+		str = "(null)";
+
+	while (*str)
+	{
+		_putchar(*str);
+		str++;
+		(*count)++;
+	}
+
+}
+
+/**
  * print_arg - A helper function to print args
  * @format: A list of types of arguments passed to the function
  * @args: The arguments to be printed
@@ -11,8 +30,6 @@
 void print_arg(const char *format, int *count, va_list args)
 {
 	char *str;
-	int num;
-	unsigned int b;
 
 	switch (*format)
 	{
@@ -20,35 +37,32 @@ void print_arg(const char *format, int *count, va_list args)
 			_putchar(va_arg(args, int));
 			(*count)++;
 			break;
-
 		case 's':
 			str = va_arg(args, char *);
-			if (!str)
-				str = "(null)";
-			while (*str)
-			{
-				_putchar(*str);
-				str++;
-				(*count)++;
-			}
+			check_str(str, count);
 			break;
-
 		case '%':
 			_putchar('%');
 			(*count)++;
 			break;
-
-		case 'd':
-		case 'i':
-			num = va_arg(args, int);
-			print_number(num, count);
+		case ('d' || 'i'):
+			print_number(va_arg(args, int), count);
 			break;
-
 		case 'b':
-			b  = va_arg(args, unsigned int);
-			print_binary(b, count);
+			print_binary(va_arg(args, unsigned int), count);
 			break;
-
+		case 'u':
+			print_ui(va_arg(args, unsigned int), count);
+			break;
+		case 'o':
+			print_octal(va_arg(args, unsigned int), count);
+			break;
+		case 'x':
+			print_hex(va_arg(args, unsigned int), 0, count);
+			break;
+		case 'X':
+			print_hex(va_arg(args, unsigned int), 1, count);
+			break;
 		default:
 			_putchar('%');
 			_putchar(*format);
