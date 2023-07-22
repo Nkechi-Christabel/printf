@@ -29,7 +29,7 @@ int print_number(int num, int *count)
 
 /**
  * print_binary - Converts unsigned int to binary
- * @num: The number to print
+ * @b: The number to print
  * @count: The number of chracters printed
  *
  * Return: 0 always (success)
