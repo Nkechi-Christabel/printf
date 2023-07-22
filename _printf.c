@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include "main.h"
+#include <stddef.h>
 
 /**
  * print_arg - A helper function to print args
@@ -90,9 +91,12 @@ int _printf(const char *format, ...)
 	int count = 0;
 	va_list args;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(args, format);
 
-	while (format && *format)
+	while (*format)
 	{
 		if (*format != '%')
 		{
