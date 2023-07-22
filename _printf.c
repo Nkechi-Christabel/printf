@@ -3,6 +3,17 @@
 #include "main.h"
 
 
+
+int num_digits(int num) {
+    int count = 0;
+    if (num == 0) return 1;
+    while (num != 0) {
+        num /= 10;
+        count++;
+    }
+    return count;
+}
+
 /**
  * print_arg - A helper function to print args
  * @format: A list of types of arguments passed to the function
@@ -11,7 +22,8 @@
  */
 void  print_arg(const char *format, int *count, va_list args)
 {
-	char *str;
+	char *str, num_str[12];
+	int num, num_chars, i;
 
 	switch (*format)
 	{
@@ -30,6 +42,27 @@ void  print_arg(const char *format, int *count, va_list args)
 			}
 			break;
 
+		case 'd':
+		case 'i':
+			num = va_arg(args, int);
+			num_chars = num_digits(num);
+
+			i = num_chars - 1;
+			while (num != 0) {
+				num_str[i] = '0' + (num % 10);
+				num /= 10;
+				i--;
+			}
+			num_str[num_chars] = '\0';
+
+			 i = 0;
+                    while (num_str[i] != '\0') {
+                        _putchar(num_str[i]);
+                        i++;
+                        count++;
+                    }
+			break;
+
 		case '%':
 			_putchar('%');
 			(*count)++;
@@ -37,7 +70,8 @@ void  print_arg(const char *format, int *count, va_list args)
 
 		default:
 			_putchar('%');
-			(*count)++;
+			putchar(*format);
+			(*count) += 2;
 			break;
 	}
 }
