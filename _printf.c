@@ -16,7 +16,7 @@ void print_arg(const char *format, int *count, va_list args)
 	switch (*format)
 	{
 		case 'c':
-			_putchar((char)va_arg(args, int));
+			_putchar(va_arg(args, int));
 			(*count)++;
 			break;
 
@@ -89,7 +89,7 @@ int _printf(const char *format, ...)
 	int count = 0;
 	va_list args;
 
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(args, format);
