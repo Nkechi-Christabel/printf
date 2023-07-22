@@ -12,16 +12,3 @@ void _putchar(char c)
 	(write(STDOUT_FILENO, &c, 1));
 }
 
-
-/**
- * print_str - Prints a string using _putchar
- * @str: the string to print
- */
-void print_str(const char *str)
-{
-	while (*str)
-	{
-		_putchar(*str);
-		str++;
-	}
-}

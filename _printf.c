@@ -4,10 +4,10 @@
 /**
  * print_arg - A helper function to print args
  * @format: A list of types of arguments passed to the function
- * @count: The number of characters printed
  * @args: The arguments to be printed
+ * @count: The number of characters printed
  */
-void  print_arg(const char *format, int *count, va_list args)
+void print_arg(const char *format, int *count, va_list args)
 {
 	char *str;
 	int num;
@@ -50,6 +50,7 @@ void  print_arg(const char *format, int *count, va_list args)
 /**
  * print_number - Prints an integer
  * @num: The number to print
+ * @count: The number of characters printed
  * Return: The number of characters printed
  */
 int print_number(int num, int *count)
