@@ -12,6 +12,7 @@
 void  print_arg(const char *format, int *count, va_list args)
 {
 	char *str;
+	int num;
 
 	switch (*format)
 	{
@@ -34,12 +35,43 @@ void  print_arg(const char *format, int *count, va_list args)
 			_putchar('%');
 			(*count)++;
 			break;
+		case 'd' || 'i':
+			num = va_arg(args, int);
+			print_number(num, count);
+
 
 		default:
 			_putchar('%');
 			(*count)++;
 			break;
 	}
+}
+
+/**
+ * print_number - Prints an integer
+ * @num: The number to print
+ * Return: The number of characters printed
+ */
+int print_number(int num, int *count)
+{
+	unsigned int n;
+
+	if (num < 0)
+	{
+		_putchar('-');
+		(count)++;
+		n = -num;
+	}
+	else
+		n = num;
+
+	if (n / 10 != 0)
+		(count) += print_number(n / 10);
+
+	_putchar(n % 10 + '0');
+	(count)++;
+
+
 }
 
 
