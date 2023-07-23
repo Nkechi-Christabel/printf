@@ -10,6 +10,8 @@ void _write_buffer(char *buffer, int *buffer_index);
 int _printf(const char *format, ...);
 void print_arg(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index);
+void print_arg2(const char *format, int *count, va_list args, char *buffer,
+		int *buffer_index);
 void print_number(int num, int *count, char *buffer, int *buffer_index);
 void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index);
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index);

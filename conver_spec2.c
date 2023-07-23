@@ -54,10 +54,10 @@ void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 		while (*str)
 		{
 			_putchar(*str, buffer, buffer_index);
-
 			str++;
 		}
 	}
+
 
 	_putchar('0', buffer, buffer_index);
 	_putchar('x', buffer, buffer_index);
