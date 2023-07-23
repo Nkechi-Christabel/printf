@@ -11,6 +11,19 @@ void print_number(int num, int *count, char *buffer, int *buffer_index)
 {
 	unsigned int n;
 
+	if (flag_plus && num >= 0)
+	{
+		buffer[buffer_index++] = '+';
+		(*count)++;
+		flag_plus = 0;
+	} 
+	else if (flag_space && num >= 0)
+	{
+		buffer[buffer_index++] = ' ';
+		(*count)++;
+		flag_space = 0;
+	}
+
 	if (num < 0)
 	{
 		_putchar('-', buffer, buffer_index);
@@ -53,6 +66,19 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
  */
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
 {
+	if (flag_plus && num >= 0)
+	{
+		buffer[buffer_index++] = '+';
+		(*count)++;
+		flag_plus = 0;
+	}
+	else if (flag_space && num >= 0)
+	{
+		buffer[buffer_index++] = ' ';
+		(*count)++;
+		flag_space = 0;
+	}
+
 	if (u / 10 != 0)
 		print_ui(u / 10, count, buffer, buffer_index);
 
@@ -70,6 +96,12 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
  */
 void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
 {
+	if (flag_hash)
+	{
+		buffer[buffer_index++] = '0';
+		(*count)++;
+	}
+
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index);
 
@@ -91,6 +123,13 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		int *buffer_index)
 {
 	char *hexString;
+
+	if (flag_hash)
+	{
+		buffer[buffer_index++] = '0';
+		buffer[buffer_index++] = 'x';
+		(*count) += 2;
+	}
 
 	if (uppercase)
 		hexString = "0123456789ABCDEF";
