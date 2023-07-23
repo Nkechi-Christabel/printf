@@ -3,7 +3,11 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+
 #define BUFFER_SIZE 1024
+#extern int isflag_plus
+#extern int isflag_space
+#extern int isflag_hash
 
 void _putchar(char c, char *buffer, int *buffer_index);
 void _write_buffer(char *buffer, int *buffer_index);
