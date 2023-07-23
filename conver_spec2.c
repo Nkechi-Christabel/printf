@@ -50,14 +50,7 @@ void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 	unsigned long int ptr = (unsigned long int)p;
 
 	if (!p)
-	{
-		while (*str)
-		{
-			_putchar(*str, buffer, buffer_index);
-			str++;
-		}
-	}
-
+		return (write(1, "(nil)", 5));
 
 	_putchar('0', buffer, buffer_index);
 	_putchar('x', buffer, buffer_index);
