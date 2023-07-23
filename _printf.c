@@ -66,6 +66,9 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 		case 'X':
 			print_hex(va_arg(args, unsigned int), 1, count, buffer, buffer_index);
 			break;
+		case 'S':
+			print_str_nonChar(va_arg(args, char *), count, buffer, buffer_index);
+			break;
 		default:
 			_putchar('%', buffer, buffer_index);
 			_putchar(*format, buffer, buffer_index);
