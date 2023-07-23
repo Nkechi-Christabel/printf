@@ -67,7 +67,7 @@ void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 
 		(*count) += 2;
 
-		mv = sizeof(void *) * 2 - 5;
+		mv = sizeof(void *) * 2 - 1;
 
 		for (i = mv; i >= 0; i--)
 		{
