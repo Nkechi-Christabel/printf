@@ -18,7 +18,6 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
 	{
 		_putchar(*str, count, buffer, buffer_index);
 		str++;
-
 		(*count)++;
 	}
 
@@ -81,7 +80,7 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
  * _printf - The program produces output according to a format
  * @format: A character string, the format to follow.
  *
- * Return: The number of charcaters printed or 0 always (Success)
+ * Return: The number of characters printed or -1 if failure
  */
 int _printf(const char *format, ...)
 {
