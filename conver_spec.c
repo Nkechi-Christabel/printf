@@ -6,9 +6,8 @@
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
- * Return: 0 always (success)
  */
-int print_number(int num, int *count, char *buffer, int *buffer_index)
+void print_number(int num, int *count, char *buffer, int *buffer_index)
 {
 	unsigned int n;
 
@@ -26,8 +25,6 @@ int print_number(int num, int *count, char *buffer, int *buffer_index)
 
 	_putchar(n % 10 + '0', buffer, buffer_index);
 	(*count)++;
-
-	return (0);
 }
 
 /**
@@ -36,10 +33,8 @@ int print_number(int num, int *count, char *buffer, int *buffer_index)
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
- *
- * Return: 0 always (success)
  */
-int print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
+void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
 {
 	if (b / 2 != 0)
 		print_binary(b / 2, count, buffer, buffer_index);
@@ -47,8 +42,6 @@ int print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
 	_putchar('0' + (b % 2), buffer, buffer_index);
 
 	(*count)++;
-
-	return (0);
 }
 
 /**
@@ -57,10 +50,8 @@ int print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
- *
- * Return: 0 always (success)
  */
-int print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
+void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
 {
 	if (u / 10 != 0)
 		print_ui(u / 10, count, buffer, buffer_index);
@@ -68,8 +59,6 @@ int print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
 	_putchar(u % 10 + '0', buffer, buffer_index);
 
 	(*count)++;
-
-	return (0);
 }
 
 /**
@@ -78,10 +67,8 @@ int print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
- *
- * Return: 0 always (success)
  */
-int print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
+void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
 {
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index);
@@ -89,8 +76,6 @@ int print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
 	_putchar(o % 8 + '0', buffer, buffer_index);
 
 	(*count)++;
-
-	return (0);
 }
 
 /**
