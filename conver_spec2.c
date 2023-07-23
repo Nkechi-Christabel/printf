@@ -57,7 +57,6 @@ void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 
 			str++;
 		}
-		return;
 	}
 
 	_putchar('0', buffer, buffer_index);
