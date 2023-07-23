@@ -45,11 +45,18 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
 void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 {
 	int i, mv;
+	char *str = "(null)";
 	unsigned long int hexDigit;
 	unsigned long int ptr = (unsigned long int)p;
 
 	if (!p)
-		p = "(null)";
+	{
+		while (*str)
+		{
+			_putchar(*str, buffer, buffer_index);
+			str++;
+		}
+	}
 
 
 	_putchar('0', buffer, buffer_index);
