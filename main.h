@@ -6,9 +6,19 @@
 
 #define BUFFER_SIZE 1024
 
-extern int flag_plus;
-extern int flag_space;
-extern int flag_hash;
+
+/**
+ * struct flag - Struct of flag characters
+ * @plus: First member
+ * @space: Second member
+ * @hash: Third member
+ */
+struct
+{
+	int plus;
+	int space;
+	int hash;
+} flag;
 
 /*Print to Stdoutput*/
 void _putchar(char c, char *buffer, int *buffer_index);

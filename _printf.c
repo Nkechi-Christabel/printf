@@ -2,8 +2,6 @@
 #include "main.h"
 #include <stddef.h>
 
-
-int flag_plus, flag_space, flag_hash;
 /**
  * check_str - Prints a string
  * @str: The string to print
