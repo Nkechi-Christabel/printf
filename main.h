@@ -7,6 +7,7 @@
 
 void _putchar(char c, char *buffer, int *buffer_index);
 void _write_buffer(char *buffer, int *buffer_index);
+void check_str(char *str, int *count, char *buffer, int *buffer_index);
 int _printf(const char *format, ...);
 void print_arg(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index);
