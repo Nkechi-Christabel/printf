@@ -16,7 +16,7 @@ void _putchar(char c, char *buffer, int *buffer_index)
 	buffer[*buffer_index] = c;
 	(*buffer_index)++;
 
-	if (*buffer_index == BUFFER_SIZE)
+	if (*buffer_index >= BUFFER_SIZE)
 		_write_buffer(buffer, buffer_index);
 
 }
