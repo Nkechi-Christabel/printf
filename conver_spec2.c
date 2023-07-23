@@ -45,25 +45,37 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
 void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 {
 	int i, mv;
-	char *str = "(null)";
 	unsigned long int hexDigit;
 	unsigned long int ptr = (unsigned long int)p;
 
 	if (!p)
-		return (write(1, "(nil)", 5));
-
-	_putchar('0', buffer, buffer_index);
-	_putchar('x', buffer, buffer_index);
-
-	(*count) += 2;
-
-	mv = sizeof(void *) * 2 - 5;
-	for (i = mv; i >= 0; i--)
 	{
-		hexDigit = (ptr >> (i * 4)) & 0xF;
-		_putchar(hexDigit < 10 ? '0' + hexDigit : 'a' + (hexDigit - 10), buffer,
-				buffer_index);
+		p = "(null)";
 
-		(*count)++;
+		while (*p)
+		{
+			_putchar(*p, buffer, buffer_index);
+			
+			p++;
+			(*count)++;
+		}
+	}
+	else
+	{
+		_putchar('0', buffer, buffer_index);
+		_putchar('x', buffer, buffer_index);
+
+		(*count) += 2;
+
+		mv = sizeof(void *) * 2 - 5;
+
+		for (i = mv; i >= 0; i--)
+		{
+			hexDigit = (ptr >> (i * 4)) & 0xF;
+			_putchar(hexDigit < 10 ? '0' + hexDigit : 'a' + (hexDigit - 10), buffer,
+					buffer_index);
+
+			(*count)++;
+		}
 	}
 }
