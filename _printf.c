@@ -16,7 +16,7 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
 
 	while (*str)
 	{
-		_putchar(*str, count, buffer, buffer_index);
+		_putchar(*str, buffer, buffer_index);
 		str++;
 		(*count)++;
 	}
@@ -39,7 +39,7 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 	switch (*format)
 	{
 		case 'c':
-			_putchar(va_arg(args, int), count, buffer, buffer_index);
+			_putchar(va_arg(args, int), buffer, buffer_index);
 			(*count)++;
 			break;
 		case 's':
@@ -47,10 +47,11 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			check_str(str, count, buffer, buffer_index);
 			break;
 		case '%':
-			_putchar('%', count, buffer, buffer_index);
+			_putchar('%', buffer, buffer_index);
 			(*count)++;
 			break;
-		case 'd': case 'i':
+		case 'd':
+	       	case 'i':
 			print_number(va_arg(args, int), count, buffer, buffer_index);
 			break;
 		case 'b':
@@ -69,8 +70,8 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			print_hex(va_arg(args, unsigned int), 1, count, buffer, buffer_index);
 			break;
 		default:
-			_putchar('%', count, buffer, buffer_index);
-			_putchar(*format, count, buffer, buffer_index);
+			_putchar('%', buffer, buffer_index);
+			_putchar(*format, buffer, buffer_index);
 			(*count) += 2;
 			break;
 	}
@@ -98,7 +99,8 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			_putchar(*format, &count, buffer, &buffer_index);
+			_putchar(*format, buffer, &buffer_index);
+			count++;
 		}
 		else
 		{
@@ -110,7 +112,7 @@ int _printf(const char *format, ...)
 	}
 
 	if (buffer_index > 0)
-		_write_buffer(buffer, &count, &buffer_index);
+		_write_buffer(buffer, &buffer_index);
 
 	va_end(args);
 
