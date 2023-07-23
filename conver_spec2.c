@@ -52,7 +52,10 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned int digit;
 
 	if (!p)
+	{
 		check_str("(null)", count, buffer, buffer_index);
+		return;
+	}
 
 	if (ptr_val == 0)
 		num_chars = 1;
