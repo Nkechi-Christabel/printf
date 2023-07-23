@@ -34,6 +34,8 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
 void print_arg(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index)
 {
+	char *str;
+
 	switch (*format)
 	{
 		case 'c':
@@ -41,14 +43,14 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			(*count)++;
 			break;
 		case 's':
-			check_str(va_arg(args, char *), count, buffer, buffer_index);
+			str = va_arg(args, char *);
+			check_str(str, count, buffer, buffer_index);
 			break;
 		case '%':
 			_putchar('%', buffer, buffer_index);
 			(*count)++;
 			break;
-		case 'd':
-		case 'i':
+		case 'd': case 'i':
 			print_number(va_arg(args, int), count, buffer, buffer_index);
 			break;
 		case 'b':
