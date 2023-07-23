@@ -1,5 +1,6 @@
-#include <unistd.h>
 #include "main.h"
+#include <stdint.h>
+#include <stddef.h>
 
 /**
  * _putchar - A custom function to store characters in the buffer.
@@ -12,11 +13,13 @@
  */
 void _putchar(char c, int *count, char *buffer, int *buffer_index)
 {
-    if (*buffer_index == BUFFER_SIZE)
-        _write_buffer(buffer, count, buffer_index);
+	buffer[*buffer_index] = c;
+	(*buffer_index)++;
 
-    buffer[(*buffer_index)++] = c;
+	if (*buffer_index == BUFFER_SIZE)
+		_write_buffer(buffer, count, buffer_index);
 
+	(*count)++;
 }
 
 /**
@@ -27,7 +30,12 @@ void _putchar(char c, int *count, char *buffer, int *buffer_index)
  */
 void _write_buffer(char *buffer, int *count, int *buffer_index)
 {
-    write(STDOUT_FILENO, buffer, *buffer_index);
-    *count += *buffer_index;
-    *buffer_index = 0; 
+	size_t bytes_written = write(1, buffer, *buffer_index);
+
+		if (bytes_written == SIZE_MAX)
+		{
+			write(2, "Error writing to output\n", 24);
+			*count += bytes_written;
+			*buffer_index = 0;
+		}
 }
