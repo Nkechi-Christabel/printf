@@ -45,35 +45,37 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  */
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
-	int i, mv;
-	unsigned long int hexDigit;
-	uintptr_t ptr = (uintptr_t)p;
+	int i, start_index;
+	uintptr_t ptr_val = (uintptr_t)p;
+                unsigned int num_chars = 0;
+                uintptr_t temp_val = ptr_val;
+		unsigned int digit;
 
-	/**if (!p)
-	{
-		p = "(null)";
+                if (ptr_val == 0) {
+                    num_chars = 1;
+                } else {
+                    while (temp_val) {
+                        temp_val /= 16;
+                        num_chars++;
+                    }
+                }
 
-		while (*p)
-		{
-			_putchar(*p, buffer, buffer_index);
-			
-			p++;
-			(*count)++;
-		}
-	}*/
-		_putchar('0', buffer, buffer_index);
-		_putchar('x', buffer, buffer_index);
+                start_index = (*buffer_index) + num_chars + 2; 
+                buffer[start_index] = '\0';
 
-		(*count) += 2;
+                for (i = start_index - 1; i >= (*buffer_index) + 2; i--) {
+                    digit = ptr_val % 16;
+                    if (digit < 10) {
+                        buffer[i] = '0' + digit;
+                    } else {
+                        buffer[i] = 'a' + digit - 10;
+                    }
+                    ptr_val /= 16;
+                }
 
-		mv = sizeof(void *) * 2 - 5;
+                buffer[(*buffer_index)++] = '0';
+                buffer[(*buffer_index)++] = 'x';
 
-		for (i = mv; i >= 0; i--)
-		{
-			hexDigit = (ptr >> (i * 4)) & 0xF;
-			_putchar(hexDigit < 10 ? '0' + hexDigit : 'a' + (hexDigit - 10), buffer,
-					buffer_index);
-
-			(*count)++;
-		}
+                (*buffer_index) += num_chars + 2; 
+                (*count) += num_chars + 2;
 }
