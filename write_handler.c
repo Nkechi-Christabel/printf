@@ -30,9 +30,9 @@ void _putchar(char c, int *count, char *buffer, int *buffer_index)
  */
 void _write_buffer(char *buffer, int *count, int *buffer_index)
 {
-	size_t bytes_written = write(1, buffer, *buffer_index);
+	ssize_t bytes_written = write(1, buffer, *buffer_index);
 
-		if (bytes_written == SIZE_MAX)
+		if (bytes_written == -1)
 		{
 			write(2, "Error writing to output\n", 24);
 			*count += bytes_written;
