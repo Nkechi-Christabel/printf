@@ -19,6 +19,6 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index);
 void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		int *buffer_index);
 void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index);
-void print_ptr(char *p, int *count, char *buffer, int *buffer_index);
+void print_ptr(void *p, int *count, char *buffer, int *buffer_index);
 
 #endif /*MAIN_H*/

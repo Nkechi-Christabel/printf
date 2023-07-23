@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdint.h>
 
 /**
  * print_str_nonChar - The function handles the conversion specifier 'S'.
@@ -42,13 +43,13 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
  */
-void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
+void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
 	int i, mv;
 	unsigned long int hexDigit;
-	unsigned long int ptr = (unsigned long int)p;
+	uintptr_t ptr = (uintptr_t)p;
 
-	if (!p)
+	/**if (!p)
 	{
 		p = "(null)";
 
@@ -59,15 +60,13 @@ void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 			p++;
 			(*count)++;
 		}
-	}
-	else
-	{
+	}*/
 		_putchar('0', buffer, buffer_index);
 		_putchar('x', buffer, buffer_index);
 
 		(*count) += 2;
 
-		mv = sizeof(void *) * 2 - 1;
+		mv = sizeof(void *) * 2 - 5;
 
 		for (i = mv; i >= 0; i--)
 		{
@@ -77,5 +76,4 @@ void print_ptr(char *p, int *count, char *buffer, int *buffer_index)
 
 			(*count)++;
 		}
-	}
 }
