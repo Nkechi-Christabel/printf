@@ -6,20 +6,16 @@
  */
 void check_flags(const char *format)
 {
-	flag_plus = 0;
-	flag_space = 0;
-	flag_hash = 0;
-
 	while (*format == '+' || *format == ' ' || *format == '#')
 	{
 		if (*format == '+')
-			flag_plus = 1;
+			flag.plus = 1;
 
 		else if (*format == ' ')
-			flag_space = 1;
+			flag.space = 1;
 
 		else if (*format == '#')
-			flag_hash = 1;
+			flag.hash = 1;
 
 		format++;
 	}
