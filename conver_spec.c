@@ -66,13 +66,13 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
  */
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
 {
-	if (flag_plus && num >= 0)
+	if (flag_plus)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
 		flag_plus = 0;
 	}
-	else if (flag_space && num >= 0)
+	else if (flag_space)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
