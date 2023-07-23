@@ -5,8 +5,8 @@
 #include <unistd.h>
 #define BUFFER_SIZE 1024
 
-void _putchar(char c, int *count, char *buffer, int *buffer_index);
-void _write_buffer(char *buffer, int *count, int *buffer_index);
+void _putchar(char c, char *buffer, int *buffer_index);
+void _write_buffer(char *buffer, int *buffer_index);
 int _printf(const char *format, ...);
 void print_arg(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index);
