@@ -11,7 +11,7 @@
  */
 void check_str(char *str, int *count, char *buffer, int *buffer_index)
 {
-	if (!(*str))
+	if (!str)
 		str = "(null)";
 
 	while (*str)
