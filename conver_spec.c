@@ -13,13 +13,13 @@ void print_number(int num, int *count, char *buffer, int *buffer_index)
 
 	if (flag_plus && num >= 0)
 	{
-		buffer[buffer_index++] = '+';
+		buffer[(*buffer_index)++] = '+';
 		(*count)++;
 		flag_plus = 0;
 	} 
 	else if (flag_space && num >= 0)
 	{
-		buffer[buffer_index++] = ' ';
+		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
 		flag_space = 0;
 	}
@@ -68,13 +68,13 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
 {
 	if (flag_plus && num >= 0)
 	{
-		buffer[buffer_index++] = '+';
+		buffer[(*buffer_index)++] = '+';
 		(*count)++;
 		flag_plus = 0;
 	}
 	else if (flag_space && num >= 0)
 	{
-		buffer[buffer_index++] = ' ';
+		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
 		flag_space = 0;
 	}
@@ -98,7 +98,7 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
 {
 	if (flag_hash)
 	{
-		buffer[buffer_index++] = '0';
+		buffer[(*buffer_index)++] = '0';
 		(*count)++;
 	}
 
@@ -126,8 +126,8 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 
 	if (flag_hash)
 	{
-		buffer[buffer_index++] = '0';
-		buffer[buffer_index++] = 'x';
+		buffer[(*buffer_index)++] = '0';
+		buffer[(*buffer_index)++] = 'x';
 		(*count) += 2;
 	}
 
