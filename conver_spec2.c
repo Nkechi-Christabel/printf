@@ -82,7 +82,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 		ptr_val /= 16;
 	}
-	buffer[(*buffer_index) + num_chars] = '\0';
-	(*buffer_index) += num_chars + 1;
+	(*buffer_index) += num_chars;
+	 buffer[(*buffer_index) + num_chars] = '\0';
 	(*count) += num_chars + 2;
 }
