@@ -29,6 +29,7 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_arg2(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index, int flag)
@@ -61,6 +62,7 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_arg(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index, int flag)
@@ -125,6 +127,9 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			flag = check_flags(format);
+			if (flag)
+				format++;
+
 			print_arg(format, &count, args, buffer, &buffer_index, flag);
 		}
 
