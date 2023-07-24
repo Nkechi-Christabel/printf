@@ -62,7 +62,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 			num_chars++;
 		}
 	}
-	if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
+	if (*buffer_index + num_chars + 3 >= BUFFER_SIZE)
 	{
 		_write_buffer(buffer, buffer_index);
 		*buffer_index = 0;
@@ -83,5 +83,5 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	}
 	/*buffer[(*buffer_index) + num_chars] = '\0';*/
 	(*buffer_index) += num_chars;
-	(*count) += num_chars + 2;
+	(*count) += num_chars + 3;
 }
