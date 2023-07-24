@@ -49,7 +49,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	int i, num_chars = 0;
 	uintptr_t ptr_val, temp_val;
 	unsigned int digit;
-	const char* null_str;
 
 	ptr_val = (uintptr_t)p;
 	temp_val = ptr_val;
