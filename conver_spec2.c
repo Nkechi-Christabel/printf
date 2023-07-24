@@ -46,10 +46,13 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  */
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
-	int i;
-	uintptr_t ptr_val = (uintptr_t)p, temp_val = ptr_val;
-	int num_chars = 0;
+	int i, num_chars = 0;
+	uintptr_t ptr_val, temp_val;
 	unsigned int digit;
+	const char* null_str;
+
+	ptr_val = (uintptr_t)p;
+	temp_val = ptr_val;
 
 	if (ptr_val == 0)
 		num_chars = 1;
@@ -81,6 +84,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 		ptr_val /= 16;
 	}
+
 	buffer[(*buffer_index) + num_chars] = '\0';
 	(*buffer_index) += num_chars;
 	(*count) += num_chars;
