@@ -47,41 +47,30 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
 	int i;
-	uintptr_t ptr_val = (uintptr_t)p, temp_val = ptr_val;
-	int num_chars = 0;
-	unsigned int digit;
 
-	if (ptr_val == 0)
-		num_chars = 1;
+	uintptr_t ptr_val = (uintptr_t)p;
+    int num_chars = sizeof(uintptr_t) * 2;
 
-	else
-	{
-		while (temp_val)
-		{
-			temp_val /= 16;
-			num_chars++;
-		}
-	}
-	if (*buffer_index + num_chars + 3 >= BUFFER_SIZE)
-	{
-		_write_buffer(buffer, buffer_index);
-		*buffer_index = 0;
-	}
 
-	buffer[(*buffer_index)++] = '0';
-	buffer[(*buffer_index)++] = 'x';
+    if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
+    {
+        _write_buffer(buffer, buffer_index);
+        *buffer_index = 0;
+    }
 
-	for (i = num_chars - 1; i >= 0; i--)
-	{
-		digit = ptr_val % 16;
-		if (digit < 10)
-			buffer[(*buffer_index) + i] = '0' + digit;
-		else
-			buffer[(*buffer_index) + i] = 'a' + digit - 10;
+    buffer[(*buffer_index)++] = '0';
+    buffer[(*buffer_index)++] = 'x';
 
-		ptr_val /= 16;
-	}
-	buffer[(*buffer_index) + num_chars] = '\0';
-	(*buffer_index) += num_chars;
-	(*count) += num_chars + 2;
+    for (i = num_chars - 5; i >= 0; i--)
+    {
+        unsigned int digit = (ptr_val >> (i * 4)) & 0xF;
+        if (digit < 10)
+            buffer[(*buffer_index)++] = '0' + digit;
+        else
+            buffer[(*buffer_index)++] = 'a' + digit - 10;
+    }
+
+    buffer[(*buffer_index)] = '\0';
+
+    *count += num_chars + 2;
 }
