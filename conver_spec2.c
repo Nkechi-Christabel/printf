@@ -46,12 +46,29 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  */
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
-	int i, num_chars = 0;
+	int i, num_chars = 0, null_str_len;
 	uintptr_t ptr_val, temp_val;
 	unsigned int digit;
+	const char *null_str;
 
 	if (p == NULL)
-		write(1, "(nil)", 5);
+	{
+		null_str = "NULL";
+		null_str_len = 4;
+		
+		if (*buffer_index + null_str_len >= BUFFER_SIZE)
+		{
+			_write_buffer(buffer, buffer_index);
+			*buffer_index = 0;
+		}
+		
+		for (i = 0; i < null_str_len; i++)
+		{
+			buffer[(*buffer_index)++] = null_str[i];
+		}
+		(*count) += null_str_len - 1;
+	}
+
 	else
 	{
 		ptr_val = (uintptr_t)p;
@@ -73,7 +90,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 			_write_buffer(buffer, buffer_index);
 			*buffer_index = 0;
 		}
-
+	
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = 'x';
 
