@@ -46,10 +46,22 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  */
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
-	int i;
+	int i, num_chars = 0;
 	uintptr_t ptr_val = (uintptr_t)p, temp_val = ptr_val;
-	int num_chars = 0;
 	unsigned int digit;
+	const char* null_str;
+
+
+if (p == NULL)
+{
+    null_str = "(null)";
+    while (*null_str)
+    {
+        _putchar(*null_str, buffer, buffer_index);
+        null_str++;
+        (*count)++;
+    }
+}
 
 
 	if (ptr_val == 0)
