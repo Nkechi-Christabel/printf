@@ -104,7 +104,7 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
  */
 int _printf(const char *format, ...)
 {
-	int count = 0, flag;
+	int count = 0, flag = 0;
 	int buffer_index = 0;
 	char buffer[BUFFER_SIZE];
 	va_list args;
