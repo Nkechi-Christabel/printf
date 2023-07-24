@@ -7,22 +7,23 @@
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
  */
-void print_number(int num, int *count, char *buffer, int *buffer_index)
+void print_number(int num, int *count, char *buffer, int *buffer_index,
+		int *flag)
 {
 	unsigned int n;
 
-	if (flag.plus && num >= 0)
+	if (*flag == 1 && num >= 0)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
-		flag.plus = 0;
+		*flag = 0;
 	}
 
-	else if (flag.space && num >= 0)
+	else if (*flag == 2 && num >= 0)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
-		flag.space = 0;
+		*flag = 0;
 	}
 
 	if (num < 0)
@@ -35,7 +36,7 @@ void print_number(int num, int *count, char *buffer, int *buffer_index)
 		n = num;
 
 	if (n / 10 != 0)
-		print_number(n / 10, count, buffer, buffer_index);
+		print_number(n / 10, count, buffer, buffer_index, flag);
 
 	_putchar(n % 10 + '0', buffer, buffer_index);
 	(*count)++;
@@ -65,23 +66,24 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
  */
-void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
+void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
+		int *flag)
 {
-	if (flag.plus)
+	if (*flag == 1)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
-		flag.plus = 0;
+		*flag = 0;
 	}
-	else if (flag.space)
+	else if (*flag == 2)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
-		flag.space = 0;
+		*flag = 0;
 	}
 
 	if (u / 10 != 0)
-		print_ui(u / 10, count, buffer, buffer_index);
+		print_ui(u / 10, count, buffer, buffer_index, flag);
 
 	_putchar(u % 10 + '0', buffer, buffer_index);
 
@@ -95,16 +97,18 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
  */
-void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
+void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index, int *flag)
 {
-	if (flag.hash)
+
+	if (*flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
+		*flag = 0;
 	}
 
 	if (o / 8 != 0)
-		print_octal(o / 8, count, buffer, buffer_index);
+		print_octal(o / 8, count, buffer, buffer_index, flag);
 
 	_putchar(o % 8 + '0', buffer, buffer_index);
 
@@ -121,15 +125,16 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
  * @buffer_index: The current index in the buffer
  */
 void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
-		int *buffer_index)
+		int *buffer_index, int *flag)
 {
 	char *hexString;
 
-	if (flag.hash)
+	if (*flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = 'x';
 		(*count) += 2;
+		*flag = 0;
 	}
 
 	if (uppercase)
@@ -138,7 +143,7 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		hexString = "0123456789abcdef";
 
 	if (h / 16 != 0)
-		print_hex(h / 16, uppercase, count, buffer, buffer_index);
+		print_hex(h / 16, uppercase, count, buffer, buffer_index, flag);
 
 	_putchar(hexString[h % 16], buffer, buffer_index);
 

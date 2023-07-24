@@ -31,15 +31,15 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
  * @buffer_index: The current index in the buffer
  */
 void print_arg2(const char *format, int *count, va_list args, char *buffer,
-		int *buffer_index)
+		int *buffer_index, int *flag)
 {
 	switch (*format)
 	{
 		case 'x':
-			print_hex(va_arg(args, unsigned int), 0, count, buffer, buffer_index);
+			print_hex(va_arg(args, unsigned int), 0, count, buffer, buffer_index, flag);
 			break;
 		case 'X':
-			print_hex(va_arg(args, unsigned int), 1, count, buffer, buffer_index);
+			print_hex(va_arg(args, unsigned int), 1, count, buffer, buffer_index, flag);
 			break;
 		case 'S':
 			print_str_nonChar(va_arg(args, char *), count, buffer, buffer_index);
@@ -63,7 +63,7 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
  * @buffer_index: The current index in the buffer
  */
 void print_arg(const char *format, int *count, va_list args, char *buffer,
-		int *buffer_index)
+		int *buffer_index, int *flag)
 {
 	switch (*format)
 	{
@@ -80,19 +80,19 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			break;
 		case 'd':
 		case 'i':
-			print_number(va_arg(args, int), count, buffer, buffer_index);
+			print_number(va_arg(args, int), count, buffer, buffer_index, flag);
 			break;
 		case 'b':
 			print_binary(va_arg(args, unsigned int), count, buffer, buffer_index);
 			break;
 		case 'u':
-			print_ui(va_arg(args, unsigned int), count, buffer, buffer_index);
+			print_ui(va_arg(args, unsigned int), count, buffer, buffer_index, flag);
 			break;
 		case 'o':
-			print_octal(va_arg(args, unsigned int), count, buffer, buffer_index);
+			print_octal(va_arg(args, unsigned int), count, buffer, buffer_index, flag);
 			break;
 		default:
-			print_arg2(format, count, args, buffer, buffer_index);
+			print_arg2(format, count, args, buffer, buffer_index, flag);
 	}
 }
 
@@ -104,7 +104,7 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
  */
 int _printf(const char *format, ...)
 {
-	int count = 0;
+	int count = 0, flag;
 	int buffer_index = 0;
 	char buffer[BUFFER_SIZE];
 	va_list args;
@@ -124,8 +124,8 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
-			check_flags(format);
-			print_arg(format, &count, args, buffer, &buffer_index);
+			flag = check_flags(format);
+			print_arg(format, &count, args, buffer, &buffer_index, &flag);
 		}
 
 		format++;
