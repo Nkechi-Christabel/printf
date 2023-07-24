@@ -31,7 +31,7 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
  * @buffer_index: The current index in the buffer
  */
 void print_arg2(const char *format, int *count, va_list args, char *buffer,
-		int *buffer_index, int *flag)
+		int *buffer_index, int flag)
 {
 	switch (*format)
 	{
@@ -63,7 +63,7 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
  * @buffer_index: The current index in the buffer
  */
 void print_arg(const char *format, int *count, va_list args, char *buffer,
-		int *buffer_index, int *flag)
+		int *buffer_index, int flag)
 {
 	switch (*format)
 	{
@@ -125,7 +125,7 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			flag = check_flags(format);
-			print_arg(format, &count, args, buffer, &buffer_index, &flag);
+			print_arg(format, &count, args, buffer, &buffer_index, flag);
 		}
 
 		format++;
