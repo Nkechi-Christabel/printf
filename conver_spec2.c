@@ -53,22 +53,15 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 	if (p == NULL)
 	{
-		null_str = "(nil)";
-		null_str_len = 5;
-		
-		if (*buffer_index + null_str_len >= BUFFER_SIZE)
-		{
-			_write_buffer(buffer, buffer_index);
-			*buffer_index = 0;
-		}
-		
+		null_str = "(NULL)";
+		null_str_len = 6;
+
 		for (i = 0; i < null_str_len; i++)
 		{
 			buffer[(*buffer_index)++] = null_str[i];
 		}
 		(*count) += null_str_len - 1;
 	}
-
 	else
 	{
 		ptr_val = (uintptr_t)p;
@@ -76,7 +69,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 		if (ptr_val == 0)
 			num_chars = 1;
-
 		else
 		{
 			while (temp_val)
@@ -90,10 +82,8 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 			_write_buffer(buffer, buffer_index);
 			*buffer_index = 0;
 		}
-	
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = 'x';
-
 		for (i = num_chars - 1; i >= 0; i--)
 		{
 			digit = ptr_val % 16;
@@ -101,7 +91,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 				buffer[(*buffer_index) + i] = '0' + digit;
 			else
 				buffer[(*buffer_index) + i] = 'a' + digit - 10;
-
 			ptr_val /= 16;
 		}
 
