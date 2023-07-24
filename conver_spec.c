@@ -1,4 +1,5 @@
 #include "main.h"
+#include <math.h>
 
 /**
  * print_number - Prints an integer
@@ -6,24 +7,25 @@
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_number(int num, int *count, char *buffer, int *buffer_index,
-		int *flag)
+		int flag)
 {
 	unsigned int n;
 
-	if (*flag == 1 && num >= 0)
+	if (flag == 1 && num >= 0)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
-		*flag = 0;
+		flag = 0;
 	}
 
-	else if (*flag == 2 && num >= 0)
+	else if (flag == 2 && num >= 0)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
-		*flag = 0;
+		flag = 0;
 	}
 
 	if (num < 0)
@@ -65,21 +67,22 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
-		int *flag)
+		int flag)
 {
-	if (*flag == 1)
+	if (flag == 1)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
-		*flag = 0;
+		flag = 0;
 	}
-	else if (*flag == 2)
+	else if (flag == 2)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
-		*flag = 0;
+		flag = 0;
 	}
 
 	if (u / 10 != 0)
@@ -96,15 +99,17 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
-void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index, int *flag)
+void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
+	       	int flag)
 {
 
-	if (*flag == 3)
+	if (flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
-		*flag = 0;
+		flag = 0;
 	}
 
 	if (o / 8 != 0)
@@ -123,18 +128,19 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index, in
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
-		int *buffer_index, int *flag)
+		int *buffer_index, int flag)
 {
 	char *hexString;
 
-	if (*flag == 3)
+	if (flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = 'x';
 		(*count) += 2;
-		*flag = 0;
+		flag = 0;
 	}
 
 	if (uppercase)
