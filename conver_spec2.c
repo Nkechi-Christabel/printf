@@ -81,6 +81,8 @@ if (p == NULL)
 		*buffer_index = 0;
 	}
 
+       if (p)
+{
 	buffer[(*buffer_index)++] = '0';
 	buffer[(*buffer_index)++] = 'x';
 
@@ -97,4 +99,5 @@ if (p == NULL)
 	(*buffer_index) += num_chars;
 	 buffer[(*buffer_index) + num_chars] = '\0';
 	(*count) += num_chars + 2;
+}
 }
