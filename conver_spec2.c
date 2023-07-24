@@ -51,20 +51,8 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned int digit;
 	const char* null_str;
 
-
-if (p == NULL)
-{
-    null_str = "(null)";
-    while (*null_str)
-    {
-        _putchar(*null_str, buffer, buffer_index);
-        null_str++;
-        (*count)++;
-    }
-}
-else
-{
-	ptr_val = (uintptr_t)p, temp_val = ptr_val;
+	ptr_val = (uintptr_t)p;
+	temp_val = ptr_val;
 
 	if (ptr_val == 0)
 		num_chars = 1;
@@ -96,8 +84,8 @@ else
 
 		ptr_val /= 16;
 	}
+
+	buffer[(*buffer_index) + num_chars] = '\0';
 	(*buffer_index) += num_chars;
-	 buffer[(*buffer_index) + num_chars] = '\0';
-	(*count) += num_chars + 2;
-}
+	(*count) += num_chars;
 }
