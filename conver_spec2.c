@@ -53,8 +53,8 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 	if (p == NULL)
 	{
-		null_str = "NULL";
-		null_str_len = 4;
+		null_str = "(nil)";
+		null_str_len = 5;
 		
 		if (*buffer_index + null_str_len >= BUFFER_SIZE)
 		{
