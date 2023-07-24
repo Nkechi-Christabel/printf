@@ -51,6 +51,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	int num_chars = 0;
 	unsigned int digit;
 
+
 	if (ptr_val == 0)
 		num_chars = 1;
 
@@ -82,6 +83,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 		ptr_val /= 16;
 	}
 	buffer[(*buffer_index) + num_chars] = '\0';
-	(*buffer_index) += num_chars;
+	(*buffer_index) += num_chars + 1;
 	(*count) += num_chars + 2;
 }
