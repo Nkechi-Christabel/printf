@@ -3,20 +3,24 @@
 /**
  * check_flags - The function checks if format is a flag
  * @format: The format to check for a flag
+ *
+ * Return: 1, 2, 3, or 0 always (Success)
  */
-void check_flags(const char *format)
+int check_flags(const char *format)
 {
 	while (*format == '+' || *format == ' ' || *format == '#')
 	{
 		if (*format == '+')
-			flag.plus = 1;
+			return (1);
 
 		else if (*format == ' ')
-			flag.space = 1;
+			return (2);
 
 		else if (*format == '#')
-			flag.hash = 1;
+			return (3);
 
 		format++;
 	}
+
+	return (0);
 }
