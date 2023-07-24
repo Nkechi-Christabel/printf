@@ -50,41 +50,46 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	uintptr_t ptr_val, temp_val;
 	unsigned int digit;
 
-	ptr_val = (uintptr_t)p;
-	temp_val = ptr_val;
-
-	if (ptr_val == 0)
-		num_chars = 1;
-
+	if (p == NULL)
+		write(1, "(nil)", 5);
 	else
 	{
-		while (temp_val)
-		{
-			temp_val /= 16;
-			num_chars++;
-		}
-	}
-	if (*buffer_index + num_chars + 3 >= BUFFER_SIZE)
-	{
-		_write_buffer(buffer, buffer_index);
-		*buffer_index = 0;
-	}
+		ptr_val = (uintptr_t)p;
+		temp_val = ptr_val;
 
-	buffer[(*buffer_index)++] = '0';
-	buffer[(*buffer_index)++] = 'x';
+		if (ptr_val == 0)
+			num_chars = 1;
 
-	for (i = num_chars - 1; i >= 0; i--)
-	{
-		digit = ptr_val % 16;
-		if (digit < 10)
-			buffer[(*buffer_index) + i] = '0' + digit;
 		else
-			buffer[(*buffer_index) + i] = 'a' + digit - 10;
+		{
+			while (temp_val)
+			{
+				temp_val /= 16;
+				num_chars++;
+			}
+		}
+		if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
+		{
+			_write_buffer(buffer, buffer_index);
+			*buffer_index = 0;
+		}
 
-		ptr_val /= 16;
+		buffer[(*buffer_index)++] = '0';
+		buffer[(*buffer_index)++] = 'x';
+
+		for (i = num_chars - 1; i >= 0; i--)
+		{
+			digit = ptr_val % 16;
+			if (digit < 10)
+				buffer[(*buffer_index) + i] = '0' + digit;
+			else
+				buffer[(*buffer_index) + i] = 'a' + digit - 10;
+
+			ptr_val /= 16;
+		}
+
+		buffer[(*buffer_index) + num_chars] = '\0';
+		(*buffer_index) += num_chars;
+		(*count) += num_chars + 2;
 	}
-
-	buffer[(*buffer_index) + num_chars] = '\0';
-	(*buffer_index) += num_chars;
-	(*count) += num_chars;
 }
