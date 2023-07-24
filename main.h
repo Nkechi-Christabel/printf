@@ -8,17 +8,17 @@
 
 
 /**
- * struct flag - Struct of flag characters
+ * struct flag- struct of flag characters
  * @plus: First member
  * @space: Second member
  * @hash: Third member
  */
-struct
+struct flag
 {
 	int plus;
 	int space;
 	int hash;
-} flag;
+}
 
 /*Print to Stdoutput*/
 void _putchar(char c, char *buffer, int *buffer_index);
