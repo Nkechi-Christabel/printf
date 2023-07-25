@@ -59,6 +59,8 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 			str++;
 		}
 
+		(*count)++;
+
 		return;
 	}
 
