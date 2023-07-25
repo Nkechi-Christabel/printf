@@ -49,37 +49,26 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	int i, num_chars = 0;
 	unsigned long ptr_val, temp_val;
 	unsigned int digit;
-	const char null_str[] = "(null)";
-	int len = strlen(null_str);
 
-	if (p == NULL) {
-
-        if (*buffer_index + len >= BUFFER_SIZE) {
-            _write_buffer(buffer, buffer_index);
-            *buffer_index = 0;
-        }
-
-        for (i = 0; i < len; i++) {
-            buffer[(*buffer_index)++] = null_str[i];
-        }
-	buffer[(*buffer_index) + len + 1] = '\0';
-        (*count) += len;
-        return;
-    }
+	if (p == NULL)
+	{
+		(write(1, "(nill)", 5));
+		return;
+	}
 
 	ptr_val = (unsigned long)p;
 	temp_val = ptr_val;
 
-	/*if (ptr_val == 0)
+	if (ptr_val == 0)
 		num_chars = 1;
 	else
-	{*/
+	{
 		while (temp_val)
 		{
 			temp_val /= 16;
 			num_chars++;
 		}
-/*	}*/
+	}
 	if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
 	{
 		_write_buffer(buffer, buffer_index);
@@ -87,6 +76,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	}
 	buffer[(*buffer_index)++] = '0';
 	buffer[(*buffer_index)++] = 'x';
+	
 	for (i = num_chars - 1; i >= 0; i--)
 	{
 		digit = ptr_val % 16;
@@ -96,9 +86,8 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 			buffer[(*buffer_index) + i] = 'a' + digit - 10;
 		ptr_val /= 16;
 	}
-	
+
 	buffer[(*buffer_index) + num_chars] = '\0';
 	(*buffer_index) += num_chars;
-	(*count) += num_chars + 2;
-
+	(*count) += 2;
 }
