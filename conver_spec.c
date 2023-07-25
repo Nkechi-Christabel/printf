@@ -12,30 +12,26 @@
 void print_number(int num, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	unsigned int n;
+	int n;
 
-	if (flag == 1 && num >= 0)
+	if (num >= 0)
 	{
-		buffer[(*buffer_index)++] = '+';
-		(*count)++;
-		flag = 0;
+		if (flag == 1)
+			_putchar('+', buffer, buffer_index);
+
+		 else if (flag == 2)
+			 _putchar(' ', buffer, buffer_index);
+
+		 flag = 0;
+
+		 n = num;
 	}
 
-	else if (flag == 2 && num >= 0)
-	{
-		buffer[(*buffer_index)++] = ' ';
-		(*count)++;
-		flag = 0;
-	}
-
-	if (num < 0)
+	else
 	{
 		_putchar('-', buffer, buffer_index);
-		(*count)++;
 		n = -num;
 	}
-	else
-		n = num;
 
 	if (n / 10 != 0)
 		print_number(n / 10, count, buffer, buffer_index, flag);
