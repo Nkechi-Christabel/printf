@@ -68,9 +68,10 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 		_write_buffer(buffer, buffer_index);
 		*buffer_index = 0;
 	}
+
 	buffer[(*buffer_index)++] = '0';
 	buffer[(*buffer_index)++] = 'x';
-	
+
 	for (i = num_chars - 1; i >= 0; i--)
 	{
 		digit = ptr_val % 16;
