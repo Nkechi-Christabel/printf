@@ -106,7 +106,7 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
  * @flag: contains the flags
  */
 void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
-	       	int flag)
+		int flag)
 {
 
 	if (flag == 3)
