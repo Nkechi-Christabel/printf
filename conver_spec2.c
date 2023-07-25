@@ -50,9 +50,9 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned long ptr_val, temp_val;
 	unsigned int digit;
 	const char null_str[] = "(null)";
+	int len = strlen(null_str);
 
 	if (p == NULL) {
-        int len = strlen(null_str);
 
         if (*buffer_index + len >= BUFFER_SIZE) {
             _write_buffer(buffer, buffer_index);
@@ -62,6 +62,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
         for (i = 0; i < len; i++) {
             buffer[(*buffer_index)++] = null_str[i];
         }
+	buffer[(*buffer_index) + len + 1] = '\0';
         (*count) += len;
         return;
     }
