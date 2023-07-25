@@ -49,21 +49,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	int i, num_chars = 0;
 	unsigned long ptr_val, temp_val;
 	unsigned int digit;
-	char *str = "(null)";
-
-	if (!p)
-	{
-		while(*str)
-		{
-			_putchar(*str, buffer, buffer_index);
-			str++;
-		}
-
-		(*count)++;
-
-		return;
-
-	}
 
 	ptr_val = (unsigned long)p;
 	temp_val = ptr_val;
