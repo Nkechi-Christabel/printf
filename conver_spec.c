@@ -16,28 +16,25 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	char num_str[12];
 	int num_len = 0, i;
 
-	if (flag == 1 && num >= 0)
+	if (num >= 0)
 	{
-		buffer[(*buffer_index)++] = '+';
-		(*count)++;
+		if (flag == 1)
+			buffer[(*buffer_index)++] = '+';
+
+		else if (flag == 2 && num >= 0)
+			buffer[(*buffer_index)++] = ' ';
+
 		flag = 0;
+		n = num;
 	}
 
-	else if (flag == 2 && num >= 0)
-	{
-		buffer[(*buffer_index)++] = ' ';
-		(*count)++;
-		flag = 0;
-	}
-
-	if (num < 0)
+	else
 	{
 		_putchar('-', buffer, buffer_index);
-		(*count)++;
 		n = -num;
 	}
-	else
-		n = num;
+
+	(*count)++;
 
 	do {
 		num_str[num_len++] = n % 10 + '0';
