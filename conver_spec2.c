@@ -58,16 +58,16 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	ptr_val = (unsigned long)p;
 	temp_val = ptr_val;
 
-	if (ptr_val == 0)
+	/*if (ptr_val == 0)
 		num_chars = 1;
 	else
-	{
+	{*/
 		while (temp_val)
 		{
 			temp_val /= 16;
 			num_chars++;
 		}
-	}
+/*	}*/
 	if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
 	{
 		_write_buffer(buffer, buffer_index);
@@ -77,7 +77,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	buffer[(*buffer_index)++] = 'x';
 	for (i = num_chars - 1; i >= 0; i--)
 	{
-		digit = (unsigned long)ptr_val % 16;
+		digit = ptr_val % 16;
 		if (digit < 10)
 			buffer[(*buffer_index) + i] = '0' + digit;
 		else
