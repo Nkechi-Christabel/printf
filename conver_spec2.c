@@ -49,6 +49,12 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned long ptr_val, temp_val;
 	unsigned int digit;
 
+	if (p == NULL)
+	{
+		(write(1, "(nil)", 5));
+		exit(-1);
+	}
+
 	ptr_val = (unsigned long)p;
 	temp_val = ptr_val;
 
