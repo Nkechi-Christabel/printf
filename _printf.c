@@ -50,6 +50,11 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
 			break;
 		default:
 			_putchar('%', buffer, buffer_index);
+			if (flag == 2 || flag == 4)
+			{
+				_putchar(' ', buffer, buffer_index);
+				(*count)++;
+			}
 			_putchar(*format, buffer, buffer_index);
 			(*count) += 2;
 			break;
