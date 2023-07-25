@@ -4,15 +4,13 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+/*Buffer*/
 #define BUFFER_SIZE 1024
 
-
-/**
- * struct flag_obj - struct of flag characters
- * @plus: First member
- * @space: Second member
- * @hash: Third member
- */
+/*Flags*/
+#define FLAG_PLUS (1 << 0)
+#define FLAG_SPACE (1 << 1)
+#define FLAG_HASH       (1 << 2)
 
 /*Print to Stdoutput*/
 void _putchar(char c, char *buffer, int *buffer_index);
