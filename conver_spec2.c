@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdint.h>
 #include <stdlib.h>
 
 /**
@@ -46,55 +45,41 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  */
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
-	int i, num_chars = 0, null_str_len;
-	uintptr_t ptr_val, temp_val;
+	int i, num_chars = 0;
+	unsigned long ptr_val, temp_val;
 	unsigned int digit;
-	const char *null_str;
 
-	if (p == NULL)
-	{
-		null_str = "(NULL)";
-		null_str_len = 6;
+	ptr_val = (unsigned long)p;
+	temp_val = ptr_val;
 
-		for (i = 0; i < null_str_len; i++)
-		{
-			buffer[(*buffer_index)++] = null_str[i];
-		}
-		(*count) += null_str_len - 1;
-	}
+	if (ptr_val == 0)
+		num_chars = 1;
 	else
 	{
-		ptr_val = (uintptr_t)p;
-		temp_val = ptr_val;
-
-		if (ptr_val == 0)
-			num_chars = 1;
-		else
+		while (temp_val)
 		{
-			while (temp_val)
-			{
-				temp_val /= 16;
-				num_chars++;
-			}
+			temp_val /= 16;
+			num_chars++;
 		}
-		if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
-		{
-			_write_buffer(buffer, buffer_index);
-			*buffer_index = 0;
-		}
-		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
-		for (i = num_chars - 1; i >= 0; i--)
-		{
-			digit = ptr_val % 16;
-			if (digit < 10)
-				buffer[(*buffer_index) + i] = '0' + digit;
-			else
-				buffer[(*buffer_index) + i] = 'a' + digit - 10;
-			ptr_val /= 16;
-		}
-		buffer[(*buffer_index) + num_chars] = '\0';
-		(*buffer_index) += num_chars;
-		(*count) += num_chars + 2;
 	}
+	if (*buffer_index + num_chars + 2 >= BUFFER_SIZE)
+	{
+		_write_buffer(buffer, buffer_index);
+		*buffer_index = 0;
+	}
+	buffer[(*buffer_index)++] = '0';
+	buffer[(*buffer_index)++] = 'x';
+	for (i = num_chars - 1; i >= 0; i--)
+	{
+		digit = (unsigned int)ptr_val % 16;
+		if (digit < 10)
+			buffer[(*buffer_index) + i] = '0' + digit;
+		else
+			buffer[(*buffer_index) + i] = 'a' + digit - 10;
+		ptr_val /= 16;
+	}
+	buffer[(*buffer_index) + num_chars] = '\0';
+	(*buffer_index) += num_chars;
+	(*count) += num_chars + 2;
+
 }
