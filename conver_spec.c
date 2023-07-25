@@ -126,17 +126,23 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 	int num_len = 0, i;
 	bool flag_hash = (flag & FLAG_HASH) != 0;
 	bool flag_space = (flag & FLAG_SPACE) != 0;
+	bool flag_plus = (flag & FLAG_PLUS) != 0;
+
+	if (flag_plus)
+	{
+		buffer[(*buffer_index)++] = '+';
+		(*count)++;
+	}
 
 	if (flag_hash)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
 	}
-	else if (flag_space)
+	else if (flag_space && !flag_plus)
 	{
 		buffer[(*buffer_index)++] = ' ';
-		buffer[(*buffer_index)++] = '0';
-		(*count) += 2;
+		(*count)++;
 	}
 
 	do
@@ -169,21 +175,36 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 	int num_len = 0, i;
 	bool flag_hash = (flag & FLAG_HASH) != 0;
 	bool flag_space = (flag & FLAG_SPACE) != 0;
+	bool flag_plus = (flag & FLAG_PLUS) != 0;
 	char *hexString = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
 
-	if (flag_hash)
+	if (flag_hash && !flag_plus && !flag_space)
 	{
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = uppercase ? 'X' : 'x';
 		(*count) += 2;
 	}
-	else if (flag_space)
+	else
 	{
-		buffer[(*buffer_index)++] = ' ';
-		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = uppercase ? 'X' : 'x';
-		(*count) += 3;
+		if (flag_plus)
+		{
+			buffer[(*buffer_index)++] = '+';
+			(*count)++;
+		}
+
+		if (flag_hash)
+		{
+			buffer[(*buffer_index)++] = '0';
+			buffer[(*buffer_index)++] = uppercase ? 'X' : 'x';
+			(*count) += 2;
+		}
+		if (flag_space && !flag_plus && !flag_hash)
+		{
+			buffer[(*buffer_index)++] = ' ';
+			(*count)++;
+		}
 	}
+
 
 	do
 	{

@@ -134,7 +134,7 @@ int _printf(const char *format, ...)
 			flag = check_flags(format);
 			if (flag)
 			{
-				if (flag == FLAG_HASH || flag == (FLAG_SPACE | FLAG_HASH))
+				if (flag == (FLAG_SPACE | FLAG_HASH) || flag == (FLAG_SPACE | FLAG_PLUS))
 					format += 2;
 				else
 					format++;

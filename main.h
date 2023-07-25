@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+/*Buffer*/
 #define BUFFER_SIZE 1024
 
 /*Flags*/
