@@ -115,6 +115,13 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 		(*count)++;
 		flag = 0;
 	}
+	if (flag == 4)
+	{
+		buffer[(*buffer_index)++] = ' ';
+		buffer[(*buffer_index)++] = '0';
+		(*count) += 2;
+		flag = 0;
+	}
 
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index, flag);
@@ -146,6 +153,16 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		(*count) += 2;
 		flag = 0;
 	}
+	else if (flag == 4)
+	{
+
+		buffer[(*buffer_index)++] = ' ';
+		buffer[(*buffer_index)++] = '0';
+		buffer[(*buffer_index)++] = 'x';
+		(*count) += 3;
+		flag = 0;
+	}
+
 
 	if (uppercase)
 		hexString = "0123456789ABCDEF";
