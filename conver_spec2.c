@@ -51,7 +51,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned int digit;
 	char *str = "(null)";
 
-	if (p == NULL)
+	if (!p)
 	{
 		while(*str)
 		{
@@ -60,6 +60,8 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 		}
 
 		(*count)++;
+
+		return;
 
 	}
 
