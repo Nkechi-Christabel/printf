@@ -10,7 +10,7 @@
 /*Flags*/
 #define FLAG_PLUS (1 << 0)
 #define FLAG_SPACE (1 << 1)
-#define FLAG_HASH       (1 << 2)
+#define FLAG_HASH (1 << 2)
 
 /*Print to Stdoutput*/
 void _putchar(char c, char *buffer, int *buffer_index);
