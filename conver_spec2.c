@@ -1,6 +1,6 @@
 #include "main.h"
-#include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * print_str_nonChar - The function handles the conversion specifier 'S'.
@@ -46,45 +46,40 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
  */
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
-	int i, num_chars = 0;
-	uintptr_t ptr_val, temp_val;
-	unsigned int digit;
+	 unsigned long ptr_val = (unsigned long)p;
+	 unsigned int num_chars = 0;
+	 unsigned int digit;
+	 const char hexString[] = "0123456789abcdef";
 
-	ptr_val = (uintptr_t)p;
-	temp_val = ptr_val;
+	 if (*buffer_index + 2 >= BUFFER_SIZE)
+	 {
+		 _write_buffer(buffer, buffer_index);
+		 *buffer_index = 0;
+	 }
 
-	if (ptr_val == 0)
-		num_chars = 1;
+	 buffer[(*buffer_index)++] = '0';
+	 buffer[(*buffer_index)++] = 'x';
+	 (*count) += 2;
 
-	else
-	{
-		while (temp_val)
-		{
-			temp_val /= 16;
-			num_chars++;
-		}
-	}
-	if (*buffer_index + num_chars + 3 >= BUFFER_SIZE)
-	{
-		_write_buffer(buffer, buffer_index);
-		*buffer_index = 0;
-	}
+	 while (ptr_val)
+	 {
+		 ptr_val /= 16;
+		 num_chars++;
+	 }
 
-	buffer[(*buffer_index)++] = '0';
-	buffer[(*buffer_index)++] = 'x';
+	 ptr_val = (unsigned long)p;
 
-	for (i = num_chars - 1; i >= 0; i--)
-	{
-		digit = ptr_val % 16;
-		if (digit < 10)
-			buffer[(*buffer_index) + i] = '0' + digit;
-		else
-			buffer[(*buffer_index) + i] = 'a' + digit - 10;
+	 while (num_chars > 0)
+	 {
+		 digit = ptr_val >> (4 * (num_chars - 1)) & 0xF;
 
-		ptr_val /= 16;
-	}
-
-	buffer[(*buffer_index) + num_chars] = '\0';
-	(*buffer_index) += num_chars;
-	(*count) += num_chars;
+		 if (*buffer_index >= BUFFER_SIZE)
+		 {
+			 _write_buffer(buffer, buffer_index);
+			 *buffer_index = 0;
+		 }
+		 buffer[(*buffer_index)++] = hexString[digit];
+		 (*count)++;
+		 num_chars--;
+	 }
 }

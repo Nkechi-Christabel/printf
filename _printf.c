@@ -29,9 +29,10 @@ void check_str(char *str, int *count, char *buffer, int *buffer_index)
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_arg2(const char *format, int *count, va_list args, char *buffer,
-		int *buffer_index, int *flag)
+		int *buffer_index, int flag)
 {
 	switch (*format)
 	{
@@ -49,6 +50,11 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
 			break;
 		default:
 			_putchar('%', buffer, buffer_index);
+			if (flag == 2 || flag == 4)
+			{
+				_putchar(' ', buffer, buffer_index);
+				(*count)++;
+			}
 			_putchar(*format, buffer, buffer_index);
 			(*count) += 2;
 			break;
@@ -61,9 +67,10 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
 void print_arg(const char *format, int *count, va_list args, char *buffer,
-		int *buffer_index, int *flag)
+		int *buffer_index, int flag)
 {
 	switch (*format)
 	{
@@ -104,7 +111,7 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
  */
 int _printf(const char *format, ...)
 {
-	int count = 0, flag;
+	int count = 0, flag = 0;
 	int buffer_index = 0;
 	char buffer[BUFFER_SIZE];
 	va_list args;
@@ -125,12 +132,19 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			flag = check_flags(format);
-			print_arg(format, &count, args, buffer, &buffer_index, &flag);
+			if (flag)
+			{
+				if (flag == 4)
+					format += 2;
+				else
+					format++;
+			}
+
+			print_arg(format, &count, args, buffer, &buffer_index, flag);
 		}
 
 		format++;
 	}
-
 	if (buffer_index > 0)
 		_write_buffer(buffer, &buffer_index);
 
