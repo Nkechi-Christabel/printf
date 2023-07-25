@@ -19,14 +19,15 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	if (num >= 0)
 	{
 		if (flag == 1)
+
 		{
-			buffer[(*buffer_index)++] = '+';
+			_putchar('+', buffer, buffer_index);
 			flag = 0;
 		}
 
 		else if (flag == 2)
 		{
-			buffer[(*buffer_index)++] = ' ';
+			_putchar(' ', buffer, buffer_index);
 			flag = 0;
 		}
 		n = num;
@@ -47,7 +48,7 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 
 	for (i = num_len - 1; i >= 0; i--)
 	{
-		buffer[(*buffer_index)++] = num_str[i];
+		_putchar(num_str[i], buffer, buffer_index);
 		(*count)++;
 	}
 }
