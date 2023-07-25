@@ -13,6 +13,8 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
 	unsigned int n;
+	char num_str[12];
+	int num_len = 0, i;
 
 	if (flag == 1 && num >= 0)
 	{
@@ -37,11 +39,16 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	else
 		n = num;
 
-	if (n / 10 != 0)
-		print_number(n / 10, count, buffer, buffer_index, flag);
+	do {
+		num_str[num_len++] = n % 10 + '0';
+		n /= 10;
+	} while (n != 0);
 
-	_putchar(n % 10 + '0', buffer, buffer_index);
-	(*count)++;
+	for (i = num_len - 1; i >= 0; i--)
+	{
+		buffer[(*buffer_index)++] = num_str[i];
+		(*count)++;
+	}
 }
 
 /**
