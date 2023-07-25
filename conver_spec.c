@@ -19,22 +19,26 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	if (num >= 0)
 	{
 		if (flag == 1)
+		{
 			buffer[(*buffer_index)++] = '+';
+			flag = 0;
+		}
 
-		else if (flag == 2 && num >= 0)
+		else if (flag == 2)
+		{
 			buffer[(*buffer_index)++] = ' ';
-
-		flag = 0;
+			flag = 0;
+		}
 		n = num;
+		(*count)++;
 	}
-
 	else
+
 	{
 		_putchar('-', buffer, buffer_index);
 		n = -num;
+		(*count)++;
 	}
-
-	(*count)++;
 
 	do {
 		num_str[num_len++] = n % 10 + '0';
