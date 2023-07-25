@@ -77,7 +77,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	buffer[(*buffer_index)++] = 'x';
 	for (i = num_chars - 1; i >= 0; i--)
 	{
-		digit = (unsigned int)ptr_val % 16;
+		digit = (unsigned long)ptr_val % 16;
 		if (digit < 10)
 			buffer[(*buffer_index) + i] = '0' + digit;
 		else
