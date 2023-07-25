@@ -49,7 +49,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	int i, num_chars = 0;
 	unsigned long ptr_val, temp_val;
 	unsigned int digit;
-	char *str = "(nill)";
+	char *str = "(null)";
 
 	if (p == NULL)
 	{
