@@ -8,27 +8,27 @@
  */
 int check_flags(const char *format)
 {
+	int flags = 0;
+
 	while (*format == '+' || *format == ' ' || *format == '#')
 	{
 		if (*format == '+')
 		{
-			return (1);
+			flags |= FLAG_PLUS;
 		}
 
 		else if (*format == ' ')
 		{
-			if (*(format + 1) == '#')
-				return (4);
-			else
-				return (2);
+			flags |= FLAG_SPACE;
 		}
 
 		else if (*format == '#')
 		{
-			return (3);
+			flags |= FLAG_HASH;
 		}
 
+		format++;
 	}
 
-	return (0);
+	return (flags);
 }

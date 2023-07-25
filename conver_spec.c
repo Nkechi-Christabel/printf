@@ -1,5 +1,6 @@
 #include "main.h"
 #include <math.h>
+#include <stdbool.h>
 
 /**
  * print_number - Prints an integer
@@ -15,31 +16,44 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	unsigned int n;
 	char num_str[12];
 	int num_len = 0, i;
+	bool is_negative = false;
 
-	if (num >= 0)
+	if (num < 0)
 	{
-		if (flag == 1)
-			buffer[(*buffer_index)++] = '+';
-
-		else if (flag == 2 && num >= 0)
-			buffer[(*buffer_index)++] = ' ';
-
-		flag = 0;
-		n = num;
-	}
-
-	else
-	{
-		_putchar('-', buffer, buffer_index);
+		is_negative = true;
 		n = -num;
 	}
-
-	(*count)++;
+	else
+	{
+		n = num;
+	}
+	if (flag == FLAG_PLUS)
+	{
+		if (!is_negative)
+		{
+			buffer[(*buffer_index)++] = '+';
+			(*count)++;
+		}
+	}
+	else if (flag == FLAG_SPACE)
+	{
+		if (!is_negative)
+		{
+			buffer[(*buffer_index)++] = ' ';
+			(*count)++;
+		}
+	}
 
 	do {
 		num_str[num_len++] = n % 10 + '0';
 		n /= 10;
 	} while (n != 0);
+
+	if (is_negative)
+	{
+		buffer[(*buffer_index)++] = '-';
+		(*count)++;
+	}
 
 	for (i = num_len - 1; i >= 0; i--)
 	{
@@ -76,25 +90,30 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	if (flag == 1)
+	char num_str[12];
+	int num_len = 0, i;
+
+	if (flag == FLAG_PLUS)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
-		flag = 0;
 	}
-	else if (flag == 2)
+	else if (flag == FLAG_SPACE)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
-		flag = 0;
 	}
+	do
+	{
+		num_str[num_len++] = u % 10 + '0';
+		u /= 10;
+	} while (u != 0);
 
-	if (u / 10 != 0)
-		print_ui(u / 10, count, buffer, buffer_index, flag);
-
-	_putchar(u % 10 + '0', buffer, buffer_index);
-
-	(*count)++;
+	for (i = num_len - 1; i >= 0; i--)
+	{
+		buffer[(*buffer_index)++] = num_str[i];
+		(*count)++;
+	}
 }
 
 /**
@@ -108,27 +127,32 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
+	char num_str[12];
+	int num_len = 0, i;
 
-	if (flag == 3)
+	if (flag == FLAG_HASH)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
-		flag = 0;
 	}
-	if (flag == 4)
+	else if (flag == (FLAG_SPACE | FLAG_HASH))
 	{
 		buffer[(*buffer_index)++] = ' ';
 		buffer[(*buffer_index)++] = '0';
 		(*count) += 2;
-		flag = 0;
 	}
 
-	if (o / 8 != 0)
-		print_octal(o / 8, count, buffer, buffer_index, flag);
+	do
+	{
+		num_str[num_len++] = o % 8 + '0';
+		o /= 8;
+	} while (o != 0);
 
-	_putchar(o % 8 + '0', buffer, buffer_index);
-
-	(*count)++;
+	for (i = num_len - 1; i >= 0; i--)
+	{
+		buffer[(*buffer_index)++] = num_str[i];
+		(*count)++;
+	}
 }
 
 /**
@@ -144,35 +168,33 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		int *buffer_index, int flag)
 {
-	char *hexString;
+	char num_str[12];
+	int num_len = 0, i;
+	char *hexString = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
 
-	if (flag == 3)
+	if (flag == FLAG_HASH)
 	{
 		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
+		buffer[(*buffer_index)++] = uppercase ? 'X' : 'x';
 		(*count) += 2;
-		flag = 0;
 	}
-	else if (flag == 4)
+	else if (flag == (FLAG_SPACE | FLAG_HASH))
 	{
-
 		buffer[(*buffer_index)++] = ' ';
 		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
+		buffer[(*buffer_index)++] = uppercase ? 'X' : 'x';
 		(*count) += 3;
-		flag = 0;
 	}
 
+	do
+	{
+		num_str[num_len++] = hexString[h % 16];
+		h /= 16;
+	} while (h != 0);
 
-	if (uppercase)
-		hexString = "0123456789ABCDEF";
-	else
-		hexString = "0123456789abcdef";
-
-	if (h / 16 != 0)
-		print_hex(h / 16, uppercase, count, buffer, buffer_index, flag);
-
-	_putchar(hexString[h % 16], buffer, buffer_index);
-
-	(*count)++;
+	for (i = num_len - 1; i >= 0; i--)
+	{
+		buffer[(*buffer_index)++] = num_str[i];
+		(*count)++;
+	}
 }
