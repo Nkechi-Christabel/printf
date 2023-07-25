@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * print_str_nonChar - The function handles the conversion specifier 'S'.
@@ -48,12 +49,22 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	int i, num_chars = 0;
 	unsigned long ptr_val, temp_val;
 	unsigned int digit;
+	const char null_str[] = "(null)";
 
-	if (p == NULL)
-	{
-		(write(1, "(null)", 6));
-		exit(-1);
-	}
+	if (p == NULL) {
+        int len = strlen(null_str);
+
+        if (*buffer_index + len >= BUFFER_SIZE) {
+            _write_buffer(buffer, buffer_index);
+            *buffer_index = 0;
+        }
+
+        for (i = 0; i < len; i++) {
+            buffer[(*buffer_index)++] = null_str[i];
+        }
+        (*count) += len;
+        return;
+    }
 
 	ptr_val = (unsigned long)p;
 	temp_val = ptr_val;
