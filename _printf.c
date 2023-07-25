@@ -50,6 +50,11 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
 			break;
 		default:
 			_putchar('%', buffer, buffer_index);
+			if (flag == 2 || flag == 4)
+			{
+				_putchar(' ', buffer, buffer_index);
+				(*count)++;
+			}
 			_putchar(*format, buffer, buffer_index);
 			(*count) += 2;
 			break;
@@ -128,14 +133,18 @@ int _printf(const char *format, ...)
 			format++;
 			flag = check_flags(format);
 			if (flag)
-				format++;
+			{
+				if (flag == 4)
+					format += 2;
+				else
+					format++;
+			}
 
 			print_arg(format, &count, args, buffer, &buffer_index, flag);
 		}
 
 		format++;
 	}
-
 	if (buffer_index > 0)
 		_write_buffer(buffer, &buffer_index);
 

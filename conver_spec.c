@@ -12,19 +12,20 @@
 void print_number(int num, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	int n;
+	unsigned int n;
+	char num_str[12];
+	int num_len = 0, i;
 
 	if (num >= 0)
 	{
 		if (flag == 1)
-			_putchar('+', buffer, buffer_index);
+			buffer[(*buffer_index)++] = '+';
 
-		 else if (flag == 2)
-			 _putchar(' ', buffer, buffer_index);
+		else if (flag == 2 && num >= 0)
+			buffer[(*buffer_index)++] = ' ';
 
-		 flag = 0;
-
-		 n = num;
+		flag = 0;
+		n = num;
 	}
 
 	else
@@ -33,11 +34,18 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 		n = -num;
 	}
 
-	if (n / 10 != 0)
-		print_number(n / 10, count, buffer, buffer_index, flag);
-
-	_putchar(n % 10 + '0', buffer, buffer_index);
 	(*count)++;
+
+	do {
+		num_str[num_len++] = n % 10 + '0';
+		n /= 10;
+	} while (n != 0);
+
+	for (i = num_len - 1; i >= 0; i--)
+	{
+		buffer[(*buffer_index)++] = num_str[i];
+		(*count)++;
+	}
 }
 
 /**
@@ -98,13 +106,20 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
  * @flag: contains the flags
  */
 void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
-	       	int flag)
+		int flag)
 {
 
 	if (flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
+		flag = 0;
+	}
+	if (flag == 4)
+	{
+		buffer[(*buffer_index)++] = ' ';
+		buffer[(*buffer_index)++] = '0';
+		(*count) += 2;
 		flag = 0;
 	}
 
@@ -138,6 +153,16 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		(*count) += 2;
 		flag = 0;
 	}
+	else if (flag == 4)
+	{
+
+		buffer[(*buffer_index)++] = ' ';
+		buffer[(*buffer_index)++] = '0';
+		buffer[(*buffer_index)++] = 'x';
+		(*count) += 3;
+		flag = 0;
+	}
+
 
 	if (uppercase)
 		hexString = "0123456789ABCDEF";
