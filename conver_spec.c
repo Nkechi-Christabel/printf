@@ -9,8 +9,7 @@
  * @buffer_index: The current index in the buffer
  * @flag: contains the flags
  */
-void print_number(int num, int *count, char *buffer, int *buffer_index,
-		__attribute__((unused)) int flag)
+void print_number(int num, int *count, char *buffer, int *buffer_index)
 {
 	unsigned int n;
 
@@ -24,7 +23,7 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 		n = num;
 
 	if (n / 10 != 0)
-		print_number(n / 10, count, buffer, buffer_index, flag);
+		print_number(n / 10, count, buffer, buffer_index);
 
 	_putchar(n % 10 + '0', buffer, buffer_index);
 	(*count)++;

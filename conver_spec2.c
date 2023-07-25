@@ -51,12 +51,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned int digit;
 	const char hexString[] = "0123456789abcdef";
 
-	/*if (*buffer_index + 2 >= BUFFER_SIZE)
-	{
-		_write_buffer(buffer, buffer_index);
-		*buffer_index = 0;
-	}*/
-
 	_putchar('0', buffer, buffer_index);
 	_putchar('x', buffer, buffer_index);
 
@@ -74,11 +68,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	{
 		digit = ptr_val >> (4 * (num_chars - 1)) & 0xF;
 
-		/*if (*buffer_index >= BUFFER_SIZE)
-		{
-			_write_buffer(buffer, buffer_index);
-			*buffer_index = 0;
-		}*/
 		_putchar(hexString[digit], buffer, buffer_index);
 		(*count)++;
 		num_chars--;
