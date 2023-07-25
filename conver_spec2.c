@@ -95,9 +95,9 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 			buffer[(*buffer_index) + i] = 'a' + digit - 10;
 		ptr_val /= 16;
 	}
-	/*buffer[(*buffer_index) + num_chars] = '\0';*/
+	
+	buffer[(*buffer_index) + num_chars] = '\0';
 	(*buffer_index) += num_chars;
-	_putchar('\0', buffer, buffer_index);
 	(*count) += num_chars + 2;
 
 }
