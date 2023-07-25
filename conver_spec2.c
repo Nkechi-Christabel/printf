@@ -84,5 +84,5 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 	buffer[(*buffer_index) + num_chars] = '\0';
 	(*buffer_index) += num_chars;
-	(*count) += 2;
+	(*count) += num_chars + 2;
 }
