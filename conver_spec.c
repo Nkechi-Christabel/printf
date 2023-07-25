@@ -7,7 +7,6 @@
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
- * @flag: contains the flags
  */
 void print_number(int num, int *count, char *buffer, int *buffer_index)
 {
