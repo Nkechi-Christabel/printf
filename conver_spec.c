@@ -111,8 +111,15 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 	       	int flag)
 {
+	if (flag == 4)
+	{
+		buffer[(*buffer_index)++] = ' ';
+		buffer[(*buffer_index)++] = '0';
+		(*count) += 2;
+		flag = 0;
+	}
 
-	if (flag == 3)
+	else if (flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
@@ -147,6 +154,15 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = 'x';
 		(*count) += 2;
+		flag = 0;
+	}
+	else if (flag == 4)
+	{
+
+		buffer[(*buffer_index)++] = ' ';
+		buffer[(*buffer_index)++] = '0';
+		buffer[(*buffer_index)++] = 'x';
+		(*count) += 3;
 		flag = 0;
 	}
 

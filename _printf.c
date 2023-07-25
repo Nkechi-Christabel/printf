@@ -128,7 +128,12 @@ int _printf(const char *format, ...)
 			format++;
 			flag = check_flags(format);
 			if (flag)
-				format++;
+			{
+				if (flag == 4)
+					format += 2;
+				else
+					format++;
+			}
 
 			print_arg(format, &count, args, buffer, &buffer_index, flag);
 		}
