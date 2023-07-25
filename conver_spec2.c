@@ -61,7 +61,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 		(*count)++;
 
-		return;
 	}
 
 	ptr_val = (unsigned long)p;
