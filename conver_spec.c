@@ -10,47 +10,24 @@
  * @flag: contains the flags
  */
 void print_number(int num, int *count, char *buffer, int *buffer_index,
-		int flag)
+		__attribute__((unused)) int flag)
 {
 	unsigned int n;
-	char num_str[12];
-	int num_len = 0, i;
 
-	if (num >= 0)
-	{
-		if (flag == 1)
-
-		{
-			_putchar('+', buffer, buffer_index);
-			flag = 0;
-		}
-
-		else if (flag == 2)
-		{
-			_putchar(' ', buffer, buffer_index);
-			flag = 0;
-		}
-		n = num;
-		(*count)++;
-	}
-	else
-
+	if (num < 0)
 	{
 		_putchar('-', buffer, buffer_index);
+		(*count)++;
 		n = -num;
-		(*count)++;
 	}
+	else
+		n = num;
 
-	do {
-		num_str[num_len++] = n % 10 + '0';
-		n /= 10;
-	} while (n != 0);
+	if (n / 10 != 0)
+		print_number(n / 10, count, buffer, buffer_index, flag);
 
-	for (i = num_len - 1; i >= 0; i--)
-	{
-		_putchar(num_str[i], buffer, buffer_index);
-		(*count)++;
-	}
+	_putchar(n % 10 + '0', buffer, buffer_index);
+	(*count)++;
 }
 
 /**
