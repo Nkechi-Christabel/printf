@@ -51,7 +51,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 	if (p == NULL)
 	{
-		(write(1, "(nil)", 5));
+		(write(1, "(null)", 6));
 		exit(-1);
 	}
 
