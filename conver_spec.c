@@ -16,28 +16,27 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	unsigned int n;
 	char num_str[12];
 	int num_len = 0, i;
-	bool is_negative = false;
+	bool flag_plus = (flag & FLAG_PLUS) != 0;
+	bool flag_space = (flag & FLAG_SPACE) != 0;
 
-	if (num < 0)
-	{
-		is_negative = true;
-		n = -num;
-	}
-	else
+	if (num >= 0)
 	{
 		n = num;
 	}
-	if (flag == FLAG_PLUS)
+	else
 	{
-		if (!is_negative)
-		{
-			buffer[(*buffer_index)++] = '+';
-			(*count)++;
-		}
+		buffer[(*buffer_index)++] = '-';
+		(*count)++;
+		n = -num;
 	}
-	else if (flag == FLAG_SPACE)
+	if (flag_plus)
 	{
-		if (!is_negative)
+		buffer[(*buffer_index)++] = '+';
+		(*count)++;
+	}
+	else
+	{
+		if (flag_space)
 		{
 			buffer[(*buffer_index)++] = ' ';
 			(*count)++;
@@ -48,12 +47,6 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 		num_str[num_len++] = n % 10 + '0';
 		n /= 10;
 	} while (n != 0);
-
-	if (is_negative)
-	{
-		buffer[(*buffer_index)++] = '-';
-		(*count)++;
-	}
 
 	for (i = num_len - 1; i >= 0; i--)
 	{
@@ -92,13 +85,15 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 {
 	char num_str[12];
 	int num_len = 0, i;
+	bool flag_plus = (flag & FLAG_PLUS) != 0;
+	bool flag_space = (flag & FLAG_SPACE) != 0;
 
-	if (flag == FLAG_PLUS)
+	if (flag_plus)
 	{
 		buffer[(*buffer_index)++] = '+';
 		(*count)++;
 	}
-	else if (flag == FLAG_SPACE)
+	else if (flag_space)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		(*count)++;
@@ -129,13 +124,15 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 {
 	char num_str[12];
 	int num_len = 0, i;
+	bool flag_hash = (flag & FLAG_HASH) != 0;
+	bool flag_space = (flag & FLAG_SPACE) != 0;
 
-	if (flag == FLAG_HASH)
+	if (flag_hash)
 	{
 		buffer[(*buffer_index)++] = '0';
 		(*count)++;
 	}
-	else if (flag == (FLAG_SPACE | FLAG_HASH))
+	else if (flag_space)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		buffer[(*buffer_index)++] = '0';
@@ -170,15 +167,17 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 {
 	char num_str[12];
 	int num_len = 0, i;
+	bool flag_hash = (flag & FLAG_HASH) != 0;
+	bool flag_space = (flag & FLAG_SPACE) != 0;
 	char *hexString = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
 
-	if (flag == FLAG_HASH)
+	if (flag_hash)
 	{
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = uppercase ? 'X' : 'x';
 		(*count) += 2;
 	}
-	else if (flag == (FLAG_SPACE | FLAG_HASH))
+	else if (flag_space)
 	{
 		buffer[(*buffer_index)++] = ' ';
 		buffer[(*buffer_index)++] = '0';
