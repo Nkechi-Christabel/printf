@@ -1,4 +1,36 @@
 #include "main.h"
+#include <math.h>
+
+
+/**
+ * print_number_flag - Helper function to print the sign character
+ * ('+', '-' or ' ')
+ * @n: The number to print
+ * @count: The number of characters printed
+ * @buffer: The buffer to store characters
+ * @buffer_index: The current index in the buffer
+ * @flag: Contains the flags
+ */
+void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
+		int flag)
+{
+	if (n >= 0)
+	{
+		if (flag == 1)
+			_putchar('+', buffer, buffer_index);
+
+		else if (flag == 2)
+			_putchar(' ', buffer, buffer_index);
+
+		else if (flag == 5)
+
+			_putchar('+', buffer, buffer_index);
+
+		(*count)++;
+	}
+
+
+}
 
 /**
  * print_number - Prints an integer
@@ -6,25 +38,28 @@
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: Contains the flags
  */
-void print_number(int num, int *count, char *buffer, int *buffer_index)
+void print_number(int num, int *count, char *buffer, int *buffer_index,
+		int flag)
 {
 	unsigned int n;
 
 	if (num < 0)
 	{
 		_putchar('-', buffer, buffer_index);
-		(*count)++;
 		n = -num;
+		(*count)++;
 	}
 	else
 		n = num;
 
 	if (n / 10 != 0)
-		print_number(n / 10, count, buffer, buffer_index);
+		print_number(n / 10, count, buffer, buffer_index, flag);
 
 	_putchar(n % 10 + '0', buffer, buffer_index);
 	(*count)++;
+
 }
 
 /**
@@ -50,11 +85,13 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
-void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
+void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
+		int flag)
 {
 	if (u / 10 != 0)
-		print_ui(u / 10, count, buffer, buffer_index);
+		print_ui(u / 10, count, buffer, buffer_index, flag);
 
 	_putchar(u % 10 + '0', buffer, buffer_index);
 
@@ -67,40 +104,26 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index)
  * @count: The number of chracters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: contains the flags
  */
-void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index)
+void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
+		int flag)
 {
+	if (o > 0)
+	{
+		if (flag == 3 || flag == 4)
+		{
+			_putchar('0', buffer, buffer_index);
+			(*count)++;
+			flag = 0;
+		}
+	}
+
 	if (o / 8 != 0)
-		print_octal(o / 8, count, buffer, buffer_index);
+		print_octal(o / 8, count, buffer, buffer_index, flag);
 
 	_putchar(o % 8 + '0', buffer, buffer_index);
 
 	(*count)++;
 }
 
-/**
- * print_hex - Prints Unsigned hexadecimal
- * @h: The number to print
- * @uppercase: Determinant if the hexadecimals should
- * uppercase or not
- * @count: The number of chracters printed
- * @buffer: The buffer to store characters
- * @buffer_index: The current index in the buffer
- */
-void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
-		int *buffer_index)
-{
-	char *hexString;
-
-	if (uppercase)
-		hexString = "0123456789ABCDEF";
-	else
-		hexString = "0123456789abcdef";
-
-	if (h / 16 != 0)
-		print_hex(h / 16, uppercase, count, buffer, buffer_index);
-
-	_putchar(hexString[h % 16], buffer, buffer_index);
-
-	(*count)++;
-}
