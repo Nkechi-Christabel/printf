@@ -119,7 +119,6 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 		}
 	}
 
-
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index, flag);
 
