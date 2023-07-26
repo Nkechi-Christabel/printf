@@ -140,7 +140,7 @@ int _printf(const char *format, ...)
 			flag = check_flags(format);
 			if (flag)
 			{
-				if (flag == 4)
+				if (flag == 4 || flag == 5)
 					format += 2;
 				else
 					format++;

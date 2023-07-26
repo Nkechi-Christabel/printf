@@ -22,6 +22,10 @@ void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 		else if (flag == 2)
 			_putchar(' ', buffer, buffer_index);
 
+		else if (flag == 5)
+
+			_putchar('+', buffer, buffer_index);
+
 		(*count)++;
 	}
 

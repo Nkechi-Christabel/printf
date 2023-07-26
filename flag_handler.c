@@ -13,7 +13,10 @@ int check_flags(const char *format)
 	{
 		if (*format == '+')
 		{
-			return (1);
+			if (*(format + 1) == ' ')
+				return (5);
+			else
+				return (1);
 		}
 
 		else if (*format == ' ')
@@ -21,6 +24,8 @@ int check_flags(const char *format)
 			if (*(format + 1) == '#')
 				return (4);
 
+			else if (*(format + 1) == '+')
+				return (5);
 			else
 				return (2);
 		}
