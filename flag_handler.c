@@ -15,6 +15,9 @@ int check_flags(const char *format)
 		{
 			if (*(format + 1) == ' ')
 				return (5);
+
+			if (*(format + 1) == '#')
+				return (4);
 			else
 				return (1);
 		}
@@ -32,7 +35,14 @@ int check_flags(const char *format)
 
 		else if (*format == '#')
 		{
-			return (3);
+			if (*(format + 1) == ' ')
+				return (4);
+
+			else if (*(format + 1) == '+')
+				return (4);
+
+			else
+				return (3);
 		}
 
 	}

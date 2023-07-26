@@ -111,7 +111,7 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 {
 	if (o > 0)
 	{
-		if (flag == 3)
+		if (flag == 3 || flag == 4)
 		{
 			_putchar('0', buffer, buffer_index);
 			(*count)++;
@@ -119,13 +119,6 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 		}
 	}
 
-	if (flag == 4)
-	{
-		buffer[(*buffer_index)++] = ' ';
-		buffer[(*buffer_index)++] = '0';
-		(*count) += 2;
-		flag = 0;
-	}
 
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index, flag);

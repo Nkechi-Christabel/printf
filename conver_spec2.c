@@ -20,21 +20,11 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 
 	if (h > 0)
 	{
-		if (flag == 3)
+		if (flag == 3 || flag == 4)
 		{
 			buffer[(*buffer_index)++] = '0';
 			buffer[(*buffer_index)++] = 'x';
 			(*count) += 2;
-			flag = 0;
-		}
-
-		else if (flag == 4)
-		{
-			buffer[(*buffer_index)++] = ' ';
-			buffer[(*buffer_index)++] = '0';
-			buffer[(*buffer_index)++] = 'x';
-			(*count) += 3;
-
 			flag = 0;
 		}
 	}
