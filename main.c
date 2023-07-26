@@ -1,24 +1,24 @@
-#include <limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
-int main() {
+/**
+ * main - Entry point
+ *
+ * Return: 0 on success, error code otherwise
+ */
+int main(void)
+{
+	int len, len2;
 
-    int num = 0;
-    int count;
-   unsigned int ui = (unsigned int)INT_MAX + 1024;
-
-   int *ptr = (void *)0x7ffe637541f0;
-   _printf("Pointer address: %p\n", ptr);
-
-    _printf("% % % % \n");
-    _printf("Integer with 'space' flag:% d\n", num);
-    _printf("Integer with '#' flag:% #x\n", ui);
-    _printf("Integer with '#' flag:% #o\n", ui);
-
-    count = _printf("Integer with '+' flag:%+d\n", num);
-
-    printf("count is %d\n", count);
-
-    return 0;
+	len = _printf("%#o\n", 0);
+	len2 = printf("%#o", 0);
+	fflush(stdout);
+	if (len != len2)
+	{
+		printf("Lengths differ.\n");
+		fflush(stdout);
+		return (1);
+	}
+	return (0);
 }
