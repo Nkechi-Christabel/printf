@@ -90,19 +90,6 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	if (flag == 1)
-	{
-		buffer[(*buffer_index)++] = '+';
-		(*count)++;
-		flag = 0;
-	}
-	else if (flag == 2)
-	{
-		buffer[(*buffer_index)++] = ' ';
-		(*count)++;
-		flag = 0;
-	}
-
 	if (u / 10 != 0)
 		print_ui(u / 10, count, buffer, buffer_index, flag);
 
