@@ -121,8 +121,8 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 
 	if (flag == 4)
 	{
-		buffer[(*buffer_index)++] = ' ';
-		buffer[(*buffer_index)++] = '0';
+		_putchar(' ', buffer, buffer_index);
+		_putchar('0', buffer, buffer_index);
 		(*count) += 2;
 		flag = 0;
 	}
