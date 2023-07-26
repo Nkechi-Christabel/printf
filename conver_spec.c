@@ -109,12 +109,15 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
+	if (o > 0)
+	{
 		if (flag == 3 || flag == 4)
 		{
 			_putchar('0', buffer, buffer_index);
 			(*count)++;
 			flag = 0;
 		}
+	}
 
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index, flag);
