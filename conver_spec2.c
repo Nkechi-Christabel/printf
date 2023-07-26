@@ -50,9 +50,9 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	unsigned int num_chars = 0;
 	unsigned int digit;
 	const char hexString[] = "0123456789abcdef";
-	char *str = (char *)p;
+	char *str;
 
-	if (!str)
+	if (!p)
 	{
 		str = "(nil)";
 
