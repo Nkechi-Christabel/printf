@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include "main.h"
 #include <stddef.h>
+#include <string.h>
 
 /**
  * check_str - Prints a string
@@ -119,8 +120,10 @@ int _printf(const char *format, ...)
 	int buffer_index = 0;
 	char buffer[BUFFER_SIZE];
 	va_list args;
+	int size = strlen(format);
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL || (size == 2 && format[0] == '%' && (format[1] == '\0' ||
+					format[1] == ' ')))
 		return (-1);
 
 	va_start(args, format);
