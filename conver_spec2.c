@@ -18,7 +18,7 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 {
 	char *hexString;
 
-	if (flag == 3 && h > 0)
+	if (flag == 3)
 	{
 		buffer[(*buffer_index)++] = '0';
 		buffer[(*buffer_index)++] = 'x';
