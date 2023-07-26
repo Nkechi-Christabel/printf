@@ -9,7 +9,7 @@
 int check_flags(const char *format)
 {
 
-	while (*format == '+' || *format == ' ' || *format == '#')
+	while (*format == '+' || *format == ' ' || *format == '#' || *format == 'l' || *format == 'h')
 	{
 		if (*format == '+')
 		{
@@ -44,6 +44,10 @@ int check_flags(const char *format)
 			else
 				return (3);
 		}
+		else if (*format == 'l')
+			return (6);
+		else if (*format == 'h')
+			return (7);
 
 	}
 

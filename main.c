@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include "main.h"
 
 /**
@@ -12,12 +11,10 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("% #o\n", 1024);
-	len = _printf("%+#o\n", 1024);
-	len = _printf("%# o\n", 1024);
-	len = _printf("%#+o\n", 1024);
-	len = _printf("%#o\n", 1024);
-	len2 = printf("% #o\n", 1024);
+	len = _printf("%ld\n", 1024L);
+	len2 = printf("%ld\n", 1024L);
+	printf("%d\n", len);
+	printf("%d\n", len2);
 	fflush(stdout);
 	if (len != len2)
 	{
