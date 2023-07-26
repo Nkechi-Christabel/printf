@@ -23,7 +23,8 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
 /*Conversion specifier*/
 void check_str(char *str, int *count, char *buffer, int *buffer_index);
 int check_flags(const char *format);
-void print_number(int num, int *count, char *buffer, int *buffer_index);
+void print_number_flag(int n, int *count, char *buffer, int *buffer_index, int flag);
+void print_number(int num, int *count, char *buffer, int *buffer_index, int flag);
 void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index);
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 		int flag);

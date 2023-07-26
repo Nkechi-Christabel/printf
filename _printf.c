@@ -72,6 +72,8 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
 void print_arg(const char *format, int *count, va_list args, char *buffer,
 		int *buffer_index, int flag)
 {
+	int num;
+
 	switch (*format)
 	{
 		case 'c':
@@ -87,7 +89,9 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			break;
 		case 'd':
 		case 'i':
-			print_number(va_arg(args, int), count, buffer, buffer_index);
+			num = va_arg(args, int);
+			print_number_flag(num, count, buffer, buffer_index, flag);
+			print_number(num, count, buffer, buffer_index, flag);
 			break;
 		case 'b':
 			print_binary(va_arg(args, unsigned int), count, buffer, buffer_index);

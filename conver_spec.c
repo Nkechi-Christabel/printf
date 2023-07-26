@@ -1,31 +1,61 @@
 #include "main.h"
 #include <math.h>
 
+
+/**
+ * print_number_flag - Helper function to print the sign character
+ * ('+', '-' or ' ')
+ * @n: The number to print
+ * @count: The number of characters printed
+ * @buffer: The buffer to store characters
+ * @buffer_index: The current index in the buffer
+ */
+void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
+		int flag)
+{
+	if (n > 0)
+	{
+		if (flag == 1)
+			_putchar('+', buffer, buffer_index);
+
+		else if (flag == 2)
+			_putchar(' ', buffer, buffer_index);
+
+		n = n;
+	}
+
+	(*count)++;
+
+}
+
 /**
  * print_number - Prints an integer
  * @num: The number to print
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: Contains the flags
  */
-void print_number(int num, int *count, char *buffer, int *buffer_index)
+void print_number(int num, int *count, char *buffer, int *buffer_index,
+		int flag)
 {
 	unsigned int n;
 
 	if (num < 0)
 	{
 		_putchar('-', buffer, buffer_index);
-		(*count)++;
 		n = -num;
+		(*count)++;
 	}
 	else
 		n = num;
 
 	if (n / 10 != 0)
-		print_number(n / 10, count, buffer, buffer_index);
+		print_number(n / 10, count, buffer, buffer_index, flag);
 
 	_putchar(n % 10 + '0', buffer, buffer_index);
 	(*count)++;
+
 }
 
 /**
