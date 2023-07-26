@@ -13,7 +13,7 @@
 void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	if (n > 0)
+	if (n >= 0)
 	{
 		if (flag == 1)
 			_putchar('+', buffer, buffer_index);
@@ -21,10 +21,9 @@ void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 		else if (flag == 2)
 			_putchar(' ', buffer, buffer_index);
 
-		n = n;
+		(*count)++;
 	}
 
-	(*count)++;
 
 }
 
@@ -141,48 +140,3 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 	(*count)++;
 }
 
-/**
- * print_hex - Prints Unsigned hexadecimal
- * @h: The number to print
- * @uppercase: Determinant if the hexadecimals should
- * uppercase or not
- * @count: The number of chracters printed
- * @buffer: The buffer to store characters
- * @buffer_index: The current index in the buffer
- * @flag: contains the flags
- */
-void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
-		int *buffer_index, int flag)
-{
-	char *hexString;
-
-	if (flag == 3)
-	{
-		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
-		(*count) += 2;
-		flag = 0;
-	}
-	else if (flag == 4)
-	{
-
-		buffer[(*buffer_index)++] = ' ';
-		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
-		(*count) += 3;
-		flag = 0;
-	}
-
-
-	if (uppercase)
-		hexString = "0123456789ABCDEF";
-	else
-		hexString = "0123456789abcdef";
-
-	if (h / 16 != 0)
-		print_hex(h / 16, uppercase, count, buffer, buffer_index, flag);
-
-	_putchar(hexString[h % 16], buffer, buffer_index);
-
-	(*count)++;
-}
