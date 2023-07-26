@@ -12,22 +12,8 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("% ");
-	len2 = printf("% ");
-
-	fflush(stdout);
-	if (len != len2)
-	{
-		printf("Lengths differ.\n");
-		fflush(stdout);
-		return (1);
-	}
-	len = _printf("% % % % ");
-	len2 = printf("% % % % ");
-
-	printf("len3 %d\n", len);
-	printf("len4 %d\n", len2);
-
+	len = _printf("%#o\n", UINT_MAX);
+	len2 = printf("%#o\n", UINT_MAX);
 	fflush(stdout);
 	if (len != len2)
 	{
