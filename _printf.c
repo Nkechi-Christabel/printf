@@ -117,10 +117,9 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 int _printf(const char *format, ...)
 {
 	int count = 0, flag = 0;
-	int buffer_index = 0;
+	int buffer_index = 0, size = strlen(format);
 	char buffer[BUFFER_SIZE];
 	va_list args;
-	int size = strlen(format);
 
 	if (format == NULL || (size == 2 && format[0] == '%' && (format[1] == '\0' ||
 					format[1] == ' ')))
@@ -149,7 +148,6 @@ int _printf(const char *format, ...)
 
 			print_arg(format, &count, args, buffer, &buffer_index, flag);
 		}
-
 		format++;
 	}
 	if (buffer_index > 0)

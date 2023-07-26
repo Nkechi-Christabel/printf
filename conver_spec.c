@@ -9,6 +9,7 @@
  * @count: The number of characters printed
  * @buffer: The buffer to store characters
  * @buffer_index: The current index in the buffer
+ * @flag: Contains the flags
  */
 void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 		int flag)
@@ -119,13 +120,12 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 {
 	if (o > 0)
 	{
-
-	if (flag == 3)
-	{
-		_putchar('0', buffer, buffer_index);
-		(*count)++;
-		flag = 0;
-	}
+		if (flag == 3)
+		{
+			_putchar('0', buffer, buffer_index);
+			(*count)++;
+			flag = 0;
+		}
 	}
 
 	if (flag == 4)

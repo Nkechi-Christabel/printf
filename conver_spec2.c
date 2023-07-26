@@ -18,21 +18,25 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 {
 	char *hexString;
 
-	if (flag == 3 && h > 0)
+	if (h > 0)
 	{
-		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
-		(*count) += 2;
-		flag = 0;
-	}
-	else if (flag == 4)
-	{
+		if (flag == 3)
+		{
+			buffer[(*buffer_index)++] = '0';
+			buffer[(*buffer_index)++] = 'x';
+			(*count) += 2;
+			flag = 0;
+		}
 
-		buffer[(*buffer_index)++] = ' ';
-		buffer[(*buffer_index)++] = '0';
-		buffer[(*buffer_index)++] = 'x';
-		(*count) += 3;
-		flag = 0;
+		else if (flag == 4)
+		{
+			buffer[(*buffer_index)++] = ' ';
+			buffer[(*buffer_index)++] = '0';
+			buffer[(*buffer_index)++] = 'x';
+			(*count) += 3;
+
+			flag = 0;
+		}
 	}
 
 
@@ -95,16 +99,14 @@ void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index)
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 {
 	unsigned long ptr_val = (unsigned long)p;
-	unsigned int num_chars = 0;
-	unsigned int digit;
+	unsigned int num_chars = 0, digit;
 	const char hexString[] = "0123456789abcdef";
 	char *str;
 
 	if (!p)
 	{
 		str = "(nil)";
-
-		while(*str)
+		while (*str)
 		{
 			_putchar(*str, buffer, buffer_index);
 			str++;
@@ -113,7 +115,6 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 		return;
 	}
-
 
 	_putchar('0', buffer, buffer_index);
 	_putchar('x', buffer, buffer_index);
