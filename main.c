@@ -11,14 +11,14 @@ int main() {
    int *ptr = (void *)0x7ffe637541f0;
    _printf("Pointer address: %p\n", ptr);
 
-    _printf("Integer with '+' flag:%+d\n", num);
+    _printf("% % % % \n");
     _printf("Integer with 'space' flag:% d\n", num);
     _printf("Integer with '#' flag:% #x\n", ui);
     _printf("Integer with '#' flag:% #o\n", ui);
 
     count = _printf("Integer with '+' flag:%+d\n", num);
 
-    printf("count is %d", count);
+    printf("count is %d\n", count);
 
     return 0;
 }
