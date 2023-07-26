@@ -52,12 +52,13 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 	const char hexString[] = "0123456789abcdef";
 	char *str = "(nil)(nil)";
 
-	if (p == NULL)
+	if (!p)
 	{
 		while(*str)
 		{
 			_putchar(*str, buffer, buffer_index);
 			str++;
+			(*count)++;
 		}
 
 		return;
