@@ -54,7 +54,7 @@ void print_ptr(void *p, int *count, char *buffer, int *buffer_index)
 
 	if (!str)
 	{
-		str = "(nil)(nil)";
+		str = "(nil)";
 
 		while(*str)
 		{
