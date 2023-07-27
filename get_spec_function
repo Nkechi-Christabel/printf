@@ -1,0 +1,16 @@
+/*#include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+*/
+/**
+ * get_spec_func - The program selects the correct function to perform
+ * the operation asked by the user.
+ * @s: The conversion specifier passed by the user
+ *
+ * Return: A pointer to the function that corresponds to the operator
+ * given as a parameter.
+ */
+/**int (*get_op_func(char *s))(const char, int, va_list args, char, int, int )
+{}
+*/

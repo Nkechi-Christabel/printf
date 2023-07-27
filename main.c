@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include "main.h"
 
 /**
@@ -12,12 +11,11 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("%ld\n", LONG_MIN);
-	_printf("%ld\n", -10234543L);
-	len2 = printf("%ld\n", LONG_MIN);
-	printf("%d\n", len);
-	printf("%d\n", len2);
-	printf("The value of LONG_MAX is: %ld\n", LONG_MIN);
+	len = _printf("%");
+	len2 = printf("%");
+
+	printf("len %d\n", len);
+	printf("len2 %d\n",len2);
 	fflush(stdout);
 	if (len != len2)
 	{
@@ -27,4 +25,3 @@ int main(void)
 	}
 	return (0);
 }
-
