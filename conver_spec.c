@@ -57,18 +57,12 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	else
 		n = num;
 
-	if (flag == 6)
-	{
-		n = (unsigned long)n;
-		flag = 0;
-	}
-
-        else if (flag == 7)
+	if (flag == 7)
 	{
 		n = (unsigned short)n;
 		flag = 0;
 	}
-	
+
 	if (n / 10 != 0)
 		print_number(n / 10, count, buffer, buffer_index, flag);
 
@@ -105,23 +99,13 @@ void print_binary(unsigned int b, int *count, char *buffer, int *buffer_index)
 void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	if (flag == 6)
-	{
-		u = (unsigned long)u;
-		flag = 0;
-	}
-
-	else if (flag == 7)
-	{
-		u = (unsigned short)u;
-		flag = 0;
-	}
 	if (u / 10 != 0)
 		print_ui(u / 10, count, buffer, buffer_index, flag);
 
 	_putchar(u % 10 + '0', buffer, buffer_index);
 
 	(*count)++;
+
 }
 
 /**
