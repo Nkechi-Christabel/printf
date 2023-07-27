@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 
 
 /**
@@ -28,6 +29,28 @@ void print_numlong(unsigned long n, int *count, char *buffer,
 void print_long(long n, int *count, char *buffer, int *buffer_index)
 {
 	long num;
+	char digits[20];
+	int i = 0;
+
+	if (n == LONG_MIN)
+	{
+		do
+		{
+			digits[i++] = '0' - (n % 10);
+			n /= 10;
+		} while (n != 0);
+
+		_putchar('-', buffer, buffer_index);
+		(*count)++;
+
+		while (i > 0)
+		{
+			i--;
+			_putchar(digits[i], buffer, buffer_index);
+			(*count)++;
+		}
+		return;
+	}
 
 	if (n < 0)
 	{
