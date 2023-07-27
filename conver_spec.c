@@ -17,16 +17,20 @@ void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 	if (n >= 0)
 	{
 		if (flag == 1)
+		{
 			_putchar('+', buffer, buffer_index);
-
+			(*count)++;
+		}
 		else if (flag == 2)
+		{
 			_putchar(' ', buffer, buffer_index);
-
+			(*count)++;
+		}
 		else if (flag == 5)
-
+		{
 			_putchar('+', buffer, buffer_index);
-
-		(*count)++;
+			(*count)++;
+		}
 	}
 
 }
