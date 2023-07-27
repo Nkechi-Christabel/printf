@@ -95,10 +95,12 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 		case 'i':
 			if (flag == 6)
 				print_long(va_arg(args, long), count, buffer, buffer_index);
-
-			num = va_arg(args, int);
-			print_number_flag(num, count, buffer, buffer_index, flag);
-			print_number(num, count, buffer, buffer_index, flag);
+			else
+			{
+				num = va_arg(args, int);
+				print_number_flag(num, count, buffer, buffer_index, flag);
+				print_number(num, count, buffer, buffer_index, flag);
+			}
 			break;
 		case 'b':
 			print_binary(va_arg(args, unsigned int), count, buffer, buffer_index);

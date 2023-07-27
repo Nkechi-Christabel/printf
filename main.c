@@ -12,8 +12,8 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("%lx - %lx = %lx\n", ULONG_MAX, 2048UL, ULONG_MAX - 2048UL);
-	len2 = printf("%lx - %lx = %lx\n", ULONG_MAX, 2048UL, ULONG_MAX - 2048UL);
+	len = _printf("%+d\n", INT_MIN);
+	len2 = printf("%+d\n", INT_MIN);
 	fflush(stdout);
 	if (len != len2)
 	{
