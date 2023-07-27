@@ -48,7 +48,7 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
 	int n;
-	
+
 	if (num == INT_MIN)
 	{
 		print_long(num, count, buffer, buffer_index);
