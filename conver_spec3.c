@@ -32,10 +32,9 @@ void print_long(long n, int *count, char *buffer, int *buffer_index)
 	char digits[20];
 	int i = 0;
 
-	if (n == LONG_MIN)
+	if (n == LONG_MIN || n == INT_MIN)
 	{
-		do
-		{
+		do {
 			digits[i++] = '0' - (n % 10);
 			n /= 10;
 		} while (n != 0);
