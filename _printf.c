@@ -131,7 +131,7 @@ int _printf(const char *format, ...)
 	char buffer[BUFFER_SIZE];
 	va_list args;
 
-	if (format == NULL || (size <=2 && format[0] == '%' && (format[1] == '\0' ||
+	if (format == NULL || (size <= 2 && format[0] == '%' && (format[1] == '\0' ||
 					format[1] == ' ')))
 		return (-1);
 
