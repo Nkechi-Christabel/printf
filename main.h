@@ -34,5 +34,7 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		int *buffer_index, int flag);
 void print_str_nonChar(char *s, int *count, char *buffer, int *buffer_index);
 void print_ptr(void *p, int *count, char *buffer, int *buffer_index);
+void print_numlong(unsigned long n, int *count, char *buffer, int *buffer_index);
+void print_numshort(unsigned short n, int *count, char *buffer, int *buffer_index);void print_long(long n, int *count, char *buffer, int *buffer_index);
 
 #endif /*MAIN_H*/

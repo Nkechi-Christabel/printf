@@ -29,6 +29,16 @@ void print_hex(unsigned int h, int uppercase, int *count, char *buffer,
 		}
 	}
 
+	if (flag == 6)
+	{
+		h = (unsigned long)h;
+		flag = 0;
+	}
+	else if (flag == 7)
+	{
+		h = (unsigned short)h;
+		flag = 0;
+	}
 
 	if (uppercase)
 		hexString = "0123456789ABCDEF";

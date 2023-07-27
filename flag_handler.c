@@ -9,43 +9,41 @@
 int check_flags(const char *format)
 {
 
-	while (*format == '+' || *format == ' ' || *format == '#')
+	while (*format == '+' || *format == ' ' || *format == '#' ||
+			*format == 'l' || *format == 'h')
 	{
 		if (*format == '+')
 		{
 			if (*(format + 1) == ' ')
 				return (5);
-
-			if (*(format + 1) == '#')
+			else if (*(format + 1) == '#')
 				return (4);
 			else
 				return (1);
 		}
-
 		else if (*format == ' ')
 		{
 			if (*(format + 1) == '#')
 				return (4);
-
 			else if (*(format + 1) == '+')
 				return (5);
 			else
 				return (2);
 		}
-
 		else if (*format == '#')
 		{
 			if (*(format + 1) == ' ')
 				return (4);
-
 			else if (*(format + 1) == '+')
 				return (4);
-
 			else
 				return (3);
 		}
+		else if (*format == 'l')
+			return (6);
+		else if (*format == 'h')
+			return (7);
 
 	}
-
 	return (0);
 }

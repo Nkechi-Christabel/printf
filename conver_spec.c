@@ -17,18 +17,21 @@ void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 	if (n >= 0)
 	{
 		if (flag == 1)
+		{
 			_putchar('+', buffer, buffer_index);
-
+			(*count)++;
+		}
 		else if (flag == 2)
+		{
 			_putchar(' ', buffer, buffer_index);
-
+			(*count)++;
+		}
 		else if (flag == 5)
-
+		{
 			_putchar('+', buffer, buffer_index);
-
-		(*count)++;
+			(*count)++;
+		}
 	}
-
 
 }
 
@@ -43,7 +46,7 @@ void print_number_flag(int n, int *count, char *buffer, int *buffer_index,
 void print_number(int num, int *count, char *buffer, int *buffer_index,
 		int flag)
 {
-	unsigned int n;
+	int n;
 
 	if (num < 0)
 	{
@@ -53,6 +56,12 @@ void print_number(int num, int *count, char *buffer, int *buffer_index,
 	}
 	else
 		n = num;
+
+	if (flag == 7)
+	{
+		n = (unsigned short)n;
+		flag = 0;
+	}
 
 	if (n / 10 != 0)
 		print_number(n / 10, count, buffer, buffer_index, flag);
@@ -96,6 +105,7 @@ void print_ui(unsigned int u, int *count, char *buffer, int *buffer_index,
 	_putchar(u % 10 + '0', buffer, buffer_index);
 
 	(*count)++;
+
 }
 
 /**
@@ -119,6 +129,16 @@ void print_octal(unsigned int o, int *count, char *buffer, int *buffer_index,
 		}
 	}
 
+	if (flag == 6)
+	{
+		o = (unsigned long)o;
+		flag = 0;
+	}
+	else if (flag == 7)
+	{
+		o = (unsigned short)o;
+		flag = 0;
+	}
 	if (o / 8 != 0)
 		print_octal(o / 8, count, buffer, buffer_index, flag);
 
