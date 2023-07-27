@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "main.h"
 
 /**
@@ -11,10 +12,9 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("%d\n", 1024L);
-	len2 = printf("%d\n", 1024L);
-	printf("%d\n", len);
-	printf("%d\n", len2);
+	len = _printf("%ld\n", LONG_MIN);
+	len2 = printf("%ld\n", LONG_MIN);
+	printf("The value of LONG_MAX is: %ld\n", LONG_MIN);
 	fflush(stdout);
 	if (len != len2)
 	{

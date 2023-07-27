@@ -49,9 +49,12 @@ void print_arg2(const char *format, int *count, va_list args, char *buffer,
 		case 'p':
 			print_ptr(va_arg(args, void *), count, buffer, buffer_index);
 			break;
+		case 'o':
+			print_octal(va_arg(args, unsigned int), count, buffer, buffer_index, flag);
+			break;
 		default:
 			_putchar('%', buffer, buffer_index);
-			if (flag == 2 || flag == 4)
+			if (flag == 2 || flag == 4 || flag == 5)
 			{
 				_putchar(' ', buffer, buffer_index);
 				(*count)++;
@@ -90,18 +93,25 @@ void print_arg(const char *format, int *count, va_list args, char *buffer,
 			break;
 		case 'd':
 		case 'i':
-			num = va_arg(args, int);
-			print_number_flag(num, count, buffer, buffer_index, flag);
-			print_number(num, count, buffer, buffer_index, flag);
+			if (flag == 6)
+				print_long(va_arg(args, long), count, buffer, buffer_index);
+			else
+			{
+				num = va_arg(args, int);
+				print_number_flag(num, count, buffer, buffer_index, flag);
+				print_number(num, count, buffer, buffer_index, flag);
+			}
 			break;
 		case 'b':
 			print_binary(va_arg(args, unsigned int), count, buffer, buffer_index);
 			break;
 		case 'u':
-			print_ui(va_arg(args, unsigned int), count, buffer, buffer_index, flag);
-			break;
-		case 'o':
-			print_octal(va_arg(args, unsigned int), count, buffer, buffer_index, flag);
+			if (flag == 6)
+				print_numlong(va_arg(args, unsigned long), count, buffer, buffer_index);
+			else if (flag == 7)
+				print_numshort(va_arg(args, unsigned int), count, buffer, buffer_index);
+			else
+				print_ui(va_arg(args, unsigned int), count, buffer, buffer_index, flag);
 			break;
 		default:
 			print_arg2(format, count, args, buffer, buffer_index, flag);
